@@ -1,0 +1,16 @@
+package com.rafay.notes.home
+
+import com.rafay.notes.repository.models.Note
+import java.util.*
+
+/**
+ * Ui model class for [Note].
+ *
+ * @author Rafay Ali
+ */
+data class NoteUiModel(
+    val id: Long = UUID.randomUUID().mostSignificantBits,
+    val title: String,
+    val description: String?,
+    val done: Boolean
+)

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout">
+
+    <data>
+
+        <import type="com.rafay.notes.home.NoteUiModel" />
+
+        <variable
+            name="note"
+            type="com.rafay.notes.home.NoteUiModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_item_todo"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/image_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image_done_content_description"
+            app:done="@{note.done}"
+            app:layout_constraintEnd_toStartOf="@id/viewGroup_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_radio_button_unchecked_black_24dp" />
+
+        <LinearLayout
+            android:id="@+id/viewGroup_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@id/imageView_options"
+            app:layout_constraintStart_toEndOf="@id/image_done"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{note.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#555555"
+                android:textStyle="bold"
+                tools:text="Lunch with Julie" />
+
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{note.description}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="Family" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_more_vert_24dp"
+            android:tint="#505050"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/viewGroup_content"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
