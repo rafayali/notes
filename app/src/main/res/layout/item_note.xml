@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/image_done_content_description"
+            android:visibility="gone"
             app:done="@{note.done}"
             app:layout_constraintEnd_toStartOf="@id/viewGroup_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
             android:id="@+id/viewGroup_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
             android:orientation="vertical"
@@ -59,10 +60,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="1"
+                android:maxLines="8"
                 android:text="@{note.description}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                tools:text="Family" />
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a condimentum mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam diam lectus, vehicula in mattis convallis, tristique eu risus. Integer iaculis elit leo, in cursus sapien pellentesque ac. Sed sed lectus at ligula bibendum auctor. Fusce quis metus at ligula rhoncus hendrerit. Duis vehicula scelerisque purus dapibus molestie. Suspendisse tincidunt sed urna nec facilisis. Aenean varius placerat velit, nec commodo est ornare a. Nam euismod orci vitae augue volutpat, et venenatis urna fringilla." />
 
         </LinearLayout>
 
@@ -73,6 +74,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_more_vert_24dp"
             android:tint="#505050"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/viewGroup_content"
             tools:ignore="ContentDescription" />

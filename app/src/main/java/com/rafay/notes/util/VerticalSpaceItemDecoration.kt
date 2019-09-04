@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * RecyclerView item decoration which adds space between items.
+ * [RecyclerView] item decoration which adds space between items.
  *
  * @author Rafay Ali
  */
@@ -18,7 +18,12 @@ class VerticalSpaceItemDecoration(
     private val lastItemSpaceInPx: Float? = null
 ) : RecyclerView.ItemDecoration() {
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         val bottom = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             bottomInPx,

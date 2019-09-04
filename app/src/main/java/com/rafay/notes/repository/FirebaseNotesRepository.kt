@@ -21,24 +21,25 @@ class FirebaseNotesRepository : NotesRepository {
         val mutex = Mutex()
         var job: Job? = null
 
-        val listener = todoCollection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-            querySnapshot?.let { snapshot ->
-                job?.cancel()
-                job = launch {
-                    mutex.withLock {
-                        callback(snapshot.toObjects(Note::class.java).also { list ->
-                            list.forEach { todo ->
-                                Timber.d(todo.toString())
-                            }
-                        })
+        val listener =
+            todoCollection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                querySnapshot?.let { snapshot ->
+                    job?.cancel()
+                    job = launch {
+                        mutex.withLock {
+                            callback(snapshot.toObjects(Note::class.java).also { list ->
+                                list.forEach { todo ->
+                                    Timber.d(todo.toString())
+                                }
+                            })
+                        }
                     }
                 }
-            }
 
-            firebaseFirestoreException?.let { exception ->
-                Timber.d(exception)
+                firebaseFirestoreException?.let { exception ->
+                    Timber.d(exception)
+                }
             }
-        }
 
         try {
             completable.await()
