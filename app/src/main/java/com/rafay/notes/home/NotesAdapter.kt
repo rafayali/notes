@@ -1,7 +1,9 @@
 package com.rafay.notes.home
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.RippleDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -56,21 +58,32 @@ class NotesAdapter(
         private val onItemSelected: (id: Long) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NoteUiModel) {
+            val context = binding.root.context
+
             binding.note = item
-            binding.executePendingBindings()
             binding.let {
                 it.root.setOnClickListener { onItemSelected.invoke(item.id) }
             }
             binding.imageViewOptions.setOnClickListener { }
+            binding.clParent.background = RippleDrawable(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.noteRipple
+                    )
+                ),
+                GradientDrawable().apply {
+                    setStroke(
+                        1.toDp(binding.root.context),
+                        ContextCompat.getColor(binding.root.context, R.color.noteShapeBorder)
+                    )
+                    cornerRadius = 16.toDp(context).toFloat()
+                    setColor(Color.parseColor(item.backgroundColor))
+                },
+                null
+            )
 
-            binding.clParent.background = GradientDrawable().apply {
-                setStroke(
-                    1.toDp(binding.root.context),
-                    ContextCompat.getColor(binding.root.context, R.color.noteShapeBorder)
-                )
-                cornerRadius = 16.toDp(binding.root.context).toFloat()
-                setColor(Color.parseColor(item.backgroundColor))
-            }
+            binding.executePendingBindings()
         }
     }
 }
