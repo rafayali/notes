@@ -12,5 +12,6 @@ data class NoteUiModel(
     val id: Long = UUID.randomUUID().mostSignificantBits,
     val title: String,
     val description: String?,
+    val backgroundColor: String? = null,
     val done: Boolean
 )

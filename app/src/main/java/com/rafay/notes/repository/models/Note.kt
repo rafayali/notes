@@ -9,10 +9,11 @@ import com.rafay.notes.home.NoteUiModel
  * @author Rafay Ali
  */
 data class Note(
-    val id: String = "",
-    val title: String = "",
+    val id: String? = null,
+    val title: String? = null,
     val description: String? = null,
     val done: Boolean = false,
+    val backgroundColorHex: String? = null,
     val date: Long = System.currentTimeMillis(),
     val dateCreated: Timestamp = Timestamp.now(),
     val dateModified: Timestamp = Timestamp.now()
@@ -20,8 +21,9 @@ data class Note(
 
 fun Note.toNoteUiModel(): NoteUiModel {
     return NoteUiModel(
-        title = title,
+        title = title!!,
         description = description,
+        backgroundColor = backgroundColorHex,
         done = done
     )
 }

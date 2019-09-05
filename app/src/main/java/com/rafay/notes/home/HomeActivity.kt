@@ -72,14 +72,6 @@ class HomeActivity : AppCompatActivity() {
                     this@HomeActivity,
                     2
                 )
-            /*addItemDecoration(
-                VerticalSpaceItemDecoration(
-                    bottomInPx = 16f,
-                    leftInPx = 8f,
-                    topInPx = 8f,
-                    rightInPx = 8f
-                )
-            )*/
             addItemDecoration(
                 GridSpacingItemDecoration(2, 24, true)
             )
