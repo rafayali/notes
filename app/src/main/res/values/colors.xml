@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#FFEB3B</color>
+    <color name="colorPrimaryDark">#FBC02D</color>
     <color name="colorAccent">#3D5AFE</color>
     <color name="noteShapeBorder">#405F5F5F</color>
     <color name="noteRipple">#25000000</color>

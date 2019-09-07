@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -55,14 +56,14 @@ class NotesAdapter(
      */
     class NoteViewHolder(
         private val binding: ItemNoteBinding,
-        private val onItemSelected: (id: Long) -> Unit
+        private val onItemSelected: NoteOnClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NoteUiModel) {
             val context = binding.root.context
 
             binding.note = item
             binding.let {
-                it.root.setOnClickListener { onItemSelected.invoke(item.id) }
+                it.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
             }
             binding.imageViewOptions.setOnClickListener { }
             binding.clParent.background = RippleDrawable(
@@ -88,4 +89,4 @@ class NotesAdapter(
     }
 }
 
-typealias NoteOnClickListener = (id: Long) -> Unit
+typealias NoteOnClickListener = (id: Long, view: View) -> Unit

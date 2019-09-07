@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
  *
  * @author Rafay Ali
  */
+@Suppress("unused")
 class VerticalSpaceItemDecoration(
     private val bottomInPx: Float,
     private val leftInPx: Float,
