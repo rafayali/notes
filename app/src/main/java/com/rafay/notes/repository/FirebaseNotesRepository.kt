@@ -51,15 +51,15 @@ class FirebaseNotesRepository : NotesRepository {
     }
 
     override suspend fun get(id: String): Note {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 
     override suspend fun createOrUpdate(note: Note) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 
     override suspend fun delete(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 
     companion object {

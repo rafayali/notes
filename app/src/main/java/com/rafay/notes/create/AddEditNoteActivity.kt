@@ -13,7 +13,9 @@ import com.rafay.notes.util.dataBinding
 
 class AddEditNoteActivity : AppCompatActivity() {
 
-    private val binding by dataBinding<ActivityCreateEditNoteBinding>(R.layout.activity_create_edit_note)
+    private val binding by dataBinding<ActivityCreateEditNoteBinding>(
+        R.layout.activity_create_edit_note
+    )
 
 //    private val viewModel by inject<AddEditNoteViewModel>()
 

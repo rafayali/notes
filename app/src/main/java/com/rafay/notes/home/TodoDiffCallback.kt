@@ -1,7 +1,6 @@
 package com.rafay.notes.home
 
 import androidx.recyclerview.widget.DiffUtil
-import com.rafay.notes.home.NoteUiModel
 
 /**
  * Diff utility for [NotesAdapter].
