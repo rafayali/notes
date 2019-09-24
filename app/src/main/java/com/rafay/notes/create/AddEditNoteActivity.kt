@@ -10,8 +10,6 @@ import androidx.core.view.ViewCompat
 import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import com.rafay.notes.util.dataBinding
-import org.koin.android.ext.android.bind
-import org.koin.android.ext.android.inject
 
 class AddEditNoteActivity : AppCompatActivity() {
 

@@ -40,7 +40,7 @@ class AutoDataBinding<T : ViewDataBinding>(
 }
 
 /**
- * Lazy kotlin property which creates [ViewDataBinding] instance for layout resource.
+ * Lazy kotlin property which creates [ViewDataBinding] instance of layout resource.
  */
 fun <T : ViewDataBinding> ComponentActivity.dataBinding(@LayoutRes layoutRes: Int) =
     AutoDataBinding<T>(this, layoutRes)
