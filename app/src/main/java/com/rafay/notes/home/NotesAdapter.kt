@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rafay.notes.R
@@ -85,6 +86,19 @@ class NotesAdapter(
             )
 
             binding.executePendingBindings()
+        }
+    }
+
+    /**
+     * Diff utility for [NotesAdapter].
+     */
+    private class TodoDiffCallback : DiffUtil.ItemCallback<NoteUiModel>() {
+        override fun areItemsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {
+            return oldItem == newItem
         }
     }
 }

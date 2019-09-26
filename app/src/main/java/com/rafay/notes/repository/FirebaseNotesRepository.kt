@@ -10,6 +10,9 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import timber.log.Timber
 
+/**
+ * Concrete implementation of [NotesRepository] using firestore.
+ */
 class FirebaseNotesRepository : NotesRepository {
 
     private val todoCollection = FirebaseFirestore.getInstance().collection(
