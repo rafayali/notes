@@ -5,8 +5,6 @@ import com.rafay.notes.home.NoteUiModel
 
 /**
  * Data class to save/restore [Note] object from Firebase.
- *
- * @author Rafay Ali
  */
 data class Note(
     val id: String? = null,

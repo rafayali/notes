@@ -51,9 +51,7 @@ class NotesAdapter(
     }
 
     /**
-     * ViewHolder implementation for [NoteUiModel].
-     *
-     * @author Rafay Ali
+     * ViewHolder for [NoteUiModel].
      */
     class NoteViewHolder(
         private val binding: ItemNoteBinding,

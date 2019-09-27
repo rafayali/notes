@@ -1,4 +1,4 @@
-package com.rafay.notes.util
+package com.rafay.notes.common
 
 /**
  * A generic class that holds values with its loading status.

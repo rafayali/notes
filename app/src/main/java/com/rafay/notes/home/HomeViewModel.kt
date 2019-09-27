@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafay.notes.repository.NotesRepository
 import com.rafay.notes.repository.models.toNoteUiModel
-import com.rafay.notes.util.Result
+import com.rafay.notes.common.Result
 import kotlinx.coroutines.launch
 import java.util.*
 

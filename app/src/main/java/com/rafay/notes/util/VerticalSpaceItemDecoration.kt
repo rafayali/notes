@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  * [RecyclerView] item decoration which adds space between items.
- *
- * @author Rafay Ali
  */
 @Suppress("unused")
 class VerticalSpaceItemDecoration(

@@ -4,8 +4,6 @@ import com.rafay.notes.repository.models.Note
 
 /**
  * Interface for Notes repository.
- *
- * @author Rafay Ali
  */
 interface NotesRepository {
     /**
