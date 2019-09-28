@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.rafay.notes.R
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
-import com.rafay.notes.util.GridSpacingItemDecoration
+import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
 import com.rafay.notes.common.Result
 import com.rafay.notes.util.dataBinding
 import org.koin.android.ext.android.inject

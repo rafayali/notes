@@ -1,4 +1,4 @@
-package com.rafay.notes.util
+package com.rafay.notes.common.recyclerview
 
 import android.graphics.Rect
 import android.view.View
