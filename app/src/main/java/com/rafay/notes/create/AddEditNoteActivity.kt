@@ -44,8 +44,6 @@ class AddEditNoteActivity : AppCompatActivity() {
         binding.textViewDescription.setText(description)
         binding.clParent.background = Color.parseColor(bgColor).toDrawable()
         binding.toolbar.background = Color.parseColor(bgColor).toDrawable()
-
-        ViewUtils.isLayoutRtl(null)
     }
 
     private fun applyTransitions() {
