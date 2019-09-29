@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.transition.Transition
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.ViewUtils
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.transition.addListener
 import androidx.core.view.ViewCompat
@@ -43,6 +44,8 @@ class AddEditNoteActivity : AppCompatActivity() {
         binding.textViewDescription.setText(description)
         binding.clParent.background = Color.parseColor(bgColor).toDrawable()
         binding.toolbar.background = Color.parseColor(bgColor).toDrawable()
+
+        ViewUtils.isLayoutRtl(null)
     }
 
     private fun applyTransitions() {

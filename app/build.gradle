@@ -49,6 +49,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "androidx.transition:transition:$rootProject.transitionsVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"

@@ -18,6 +18,9 @@ import com.rafay.notes.common.Result
 import com.rafay.notes.util.dataBinding
 import org.koin.android.ext.android.inject
 
+/**
+ * Entry point of Notes .
+ */
 class HomeActivity : AppCompatActivity() {
 
     private val binding by dataBinding<ActivityHomeBinding>(R.layout.activity_home)
@@ -35,20 +38,7 @@ class HomeActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
-        viewModel.notes.observe(this, Observer {
-            when (it) {
-                is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    (binding.recyclerView.adapter as NotesAdapter).submitList(it.data)
-                }
-                is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-                is Result.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
-        })
+        setupViewModelObservers()
     }
 
     private fun setupRecyclerView() {
@@ -101,5 +91,22 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    private fun setupViewModelObservers(){
+        viewModel.notes.observe(this, Observer {
+            when (it) {
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    (binding.recyclerView.adapter as NotesAdapter).submitList(it.data)
+                }
+                is Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        })
     }
 }
