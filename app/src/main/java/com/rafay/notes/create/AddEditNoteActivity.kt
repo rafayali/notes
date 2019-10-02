@@ -3,6 +3,7 @@ package com.rafay.notes.create
 import android.graphics.Color
 import android.os.Bundle
 import android.transition.Transition
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ViewUtils
 import androidx.core.graphics.drawable.toDrawable
@@ -11,6 +12,7 @@ import androidx.core.view.ViewCompat
 import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import com.rafay.notes.util.dataBinding
+import kotlinx.android.synthetic.main.activity_create_edit_note.view.*
 import org.koin.android.ext.android.inject
 
 class AddEditNoteActivity : AppCompatActivity() {
@@ -33,6 +35,18 @@ class AddEditNoteActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener {
             finish()
         }
+
+        binding.llColorPanel.image_blue_button.setOnClickListener {
+            Toast.makeText(this, "Blue", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.llColorPanel.image_green_button.setOnClickListener {
+            Toast.makeText(this, "Green", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.llColorPanel.image_purple_button.setOnClickListener {
+            Toast.makeText(this, "Purple", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setContent() {
@@ -42,8 +56,7 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         binding.textViewTitle.setText(title)
         binding.textViewDescription.setText(description)
-        binding.clParent.background = Color.parseColor(bgColor).toDrawable()
-        binding.toolbar.background = Color.parseColor(bgColor).toDrawable()
+        binding.flBackground.background = Color.parseColor(bgColor).toDrawable()
     }
 
     private fun applyTransitions() {
