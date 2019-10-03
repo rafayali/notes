@@ -33,7 +33,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         applyTransitions()
 
         binding.toolbar.setNavigationOnClickListener {
-            finish()
+            onBackPressed()
         }
 
         binding.llColorPanel.image_blue_button.setOnClickListener {
