@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rafay.notes.common.Result
 import com.rafay.notes.repository.NotesRepository
 import com.rafay.notes.repository.models.toNoteUiModel
-import com.rafay.notes.common.Result
 import kotlinx.coroutines.launch
-import java.util.*
 
 /**
  * [ViewModel] for [HomeActivity].
@@ -24,11 +23,9 @@ class HomeViewModel(notesRepository: NotesRepository) : ViewModel() {
         viewModelScope.launch {
             notesRepository.getAll { notes ->
                 _notes.postValue(
-                    Result.Success(
-                        (1..10).map { // simulate specific number of notes
-                            notes.first()
-                                .copy(id = UUID.randomUUID().leastSignificantBits.toString())
-                                .toNoteUiModel()
+                    Result.Success(// simulate specific number of notes
+                        notes.map {
+                            it.toNoteUiModel()
                         }
                     )
                 )

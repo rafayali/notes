@@ -1,15 +1,25 @@
 package com.rafay.notes.create
 
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.rafay.notes.repository.NotesRepository
-import com.rafay.notes.repository.models.Note
-import kotlinx.coroutines.*
+import kotlinx.coroutines.launch
 
 /**
  * ViewModel for [AddEditNoteActivity].
  */
-class AddEditNoteViewModel(repository: NotesRepository) : ViewModel() {
+class AddEditNoteViewModel(
+    private val notesRepository: NotesRepository
+) : ViewModel() {
 
-    private val _todo = MutableLiveData<Note>()
-    val note: LiveData<Note> = _todo
+    fun save() {
+        viewModelScope.launch {
+            notesRepository.create(
+                "Call Maggie!",
+                "A test description about task.",
+                false,
+                "#009688"
+            )
+        }
+    }
 }

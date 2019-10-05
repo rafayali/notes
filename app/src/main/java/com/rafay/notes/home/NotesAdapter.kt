@@ -91,7 +91,6 @@ class NotesAdapter(
                     } else {
                         setColor(ContextCompat.getColor(context, R.color.defaultNoteColor))
                     }
-
                 },
                 null
             )

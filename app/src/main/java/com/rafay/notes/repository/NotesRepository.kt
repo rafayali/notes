@@ -21,9 +21,17 @@ interface NotesRepository {
     suspend fun get(id: String): Note
 
     /**
-     * Creates a new [Note] in repository if it doesn't exists or updates if it exists.
+     * Creates a new [Note] in repository.
      */
-    suspend fun createOrUpdate(note: Note)
+    suspend fun create(
+        title: String,
+        description: String,
+        done: Boolean,
+        backgroundHexColor: String
+    )
+
+
+    suspend fun update(note: Note)
 
     /**
      * Deletes [Note] of specified [id].

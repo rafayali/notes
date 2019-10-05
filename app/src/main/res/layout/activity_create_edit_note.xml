@@ -51,7 +51,7 @@
                 android:id="@+id/textView_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:background="@null"
                 android:hint="@string/add_edit_todo_title"
                 android:inputType="text"

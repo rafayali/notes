@@ -53,11 +53,27 @@ class FirebaseNotesRepository : NotesRepository {
         return@coroutineScope listOf<Note>()
     }
 
-    override suspend fun get(id: String): Note {
-        TODO("not implemented")
+    override suspend fun create(
+        title: String,
+        description: String,
+        done: Boolean,
+        backgroundHexColor: String
+    ) {
+        val docRef = todoCollection.document()
+        val note = Note(
+            id = docRef.id,
+            title = title,
+            description = description,
+            backgroundColorHex = backgroundHexColor
+        )
+        docRef.set(note)
     }
 
-    override suspend fun createOrUpdate(note: Note) {
+    override suspend fun update(note: Note) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override suspend fun get(id: String): Note {
         TODO("not implemented")
     }
 

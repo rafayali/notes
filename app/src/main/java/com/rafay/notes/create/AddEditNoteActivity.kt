@@ -14,6 +14,8 @@ import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import com.rafay.notes.util.dataBinding
 import kotlinx.android.synthetic.main.activity_create_edit_note.view.*
+import org.koin.android.ext.android.bind
+import org.koin.android.ext.android.inject
 
 class AddEditNoteActivity : AppCompatActivity() {
 
@@ -22,6 +24,8 @@ class AddEditNoteActivity : AppCompatActivity() {
     )
 
     private lateinit var transition: Transition.TransitionListener
+
+    private val viewModel by inject<AddEditNoteViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +66,11 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         binding.llColorPanel.image_purple_button.setOnClickListener {
             Toast.makeText(this, "Purple", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.fabDone.setOnClickListener {
+            viewModel.save()
+            onBackPressed()
         }
     }
 
