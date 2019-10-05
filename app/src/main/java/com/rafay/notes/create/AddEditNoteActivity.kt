@@ -3,6 +3,7 @@ package com.rafay.notes.create
 import android.graphics.Color
 import android.os.Bundle
 import android.transition.Transition
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -13,15 +14,12 @@ import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import com.rafay.notes.util.dataBinding
 import kotlinx.android.synthetic.main.activity_create_edit_note.view.*
-import org.koin.android.ext.android.inject
 
 class AddEditNoteActivity : AppCompatActivity() {
 
     private val binding by dataBinding<ActivityCreateEditNoteBinding>(
         R.layout.activity_create_edit_note
     )
-
-    private val viewModel by inject<AddEditNoteViewModel>()
 
     private lateinit var transition: Transition.TransitionListener
 
@@ -33,6 +31,20 @@ class AddEditNoteActivity : AppCompatActivity() {
         applyTransitions()
 
         bindViews()
+
+        binding.clParent.setOnApplyWindowInsetsListener { _, insets ->
+            val lpToolbar = (binding.toolbar.layoutParams as ViewGroup.MarginLayoutParams).apply {
+                topMargin += insets.systemWindowInsetTop
+                leftMargin += insets.systemWindowInsetLeft
+                rightMargin += insets.systemWindowInsetRight
+            }
+            binding.toolbar.layoutParams = lpToolbar
+
+            // Set listener to null so insets are not re-applied
+            binding.clParent.setOnApplyWindowInsetsListener(null)
+
+            insets.consumeSystemWindowInsets()
+        }
     }
 
     private fun bindViews() {
