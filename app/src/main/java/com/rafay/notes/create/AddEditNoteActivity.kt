@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.transition.Transition
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.ViewUtils
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.transition.addListener
 import androidx.core.view.ViewCompat
@@ -32,6 +32,10 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         applyTransitions()
 
+        bindViews()
+    }
+
+    private fun bindViews() {
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -50,7 +54,10 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     private fun setContent() {
-        val bgColor = intent.extras?.getString(KEY_STRING_BG_COLOR, "") ?: ""
+        val defaultColor =
+            "#${Integer.toHexString(ContextCompat.getColor(this, R.color.defaultNoteColor))}"
+        val bgColor =
+            intent.extras?.getString(KEY_STRING_BG_COLOR_HEX, defaultColor) ?: defaultColor
         val title = intent.extras?.getString(KEY_STRING_TITLE, "") ?: ""
         val description = intent.extras?.getString(KEY_STRING_DESCRIPTION, "") ?: ""
 
@@ -75,7 +82,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     companion object {
         const val KEY_STRING_TITLE = "title"
         const val KEY_STRING_DESCRIPTION = "description"
-        const val KEY_STRING_BG_COLOR = "bgColor"
+        const val KEY_STRING_BG_COLOR_HEX = "bgColor"
 
         const val VIEW_NAME_TITLE = "title"
         const val VIEW_NAME_DESCRIPTION = "description"

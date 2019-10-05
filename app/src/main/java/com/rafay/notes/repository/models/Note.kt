@@ -21,7 +21,7 @@ fun Note.toNoteUiModel(): NoteUiModel {
     return NoteUiModel(
         title = title!!,
         description = description,
-        backgroundColor = backgroundColorHex,
+        backgroundColorHex = backgroundColorHex,
         done = done
     )
 }

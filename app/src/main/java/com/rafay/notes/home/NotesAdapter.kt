@@ -1,5 +1,6 @@
 package com.rafay.notes.home
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -19,8 +20,6 @@ import com.rafay.notes.repository.models.Note
 
 /**
  * RecyclerView adapter for [Note].
- *
- * @author Rafay Ali
  */
 class NotesAdapter(
     private val onItemSelected: NoteOnClickListener
@@ -65,7 +64,16 @@ class NotesAdapter(
                 it.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
             }
             binding.imageViewOptions.setOnClickListener { }
-            binding.clParent.background = RippleDrawable(
+            binding.clParent.background = createNoteDrawable(context, item.backgroundColorHex)
+
+            binding.executePendingBindings()
+        }
+
+        /**
+         * Create [RippleDrawable] background for note item.
+         */
+        private fun createNoteDrawable(context: Context, backgroundColor: String?): RippleDrawable {
+            return RippleDrawable(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         context,
@@ -78,12 +86,15 @@ class NotesAdapter(
                         ContextCompat.getColor(binding.root.context, R.color.noteShapeBorder)
                     )
                     cornerRadius = 16.toDp(context).toFloat()
-                    setColor(Color.parseColor(item.backgroundColor))
+                    if (backgroundColor != null){
+                        setColor(Color.parseColor(backgroundColor))
+                    } else {
+                        setColor(ContextCompat.getColor(context, R.color.defaultNoteColor))
+                    }
+
                 },
                 null
             )
-
-            binding.executePendingBindings()
         }
     }
 

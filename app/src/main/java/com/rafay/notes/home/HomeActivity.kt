@@ -57,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
             val bundle = bundleOf(
                 AddEditNoteActivity.KEY_STRING_TITLE to note.title,
                 AddEditNoteActivity.KEY_STRING_DESCRIPTION to note.description,
-                AddEditNoteActivity.KEY_STRING_BG_COLOR to note.backgroundColor
+                AddEditNoteActivity.KEY_STRING_BG_COLOR_HEX to note.backgroundColorHex
             )
             startActivity(
                 Intent(
