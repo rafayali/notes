@@ -8,10 +8,17 @@ import org.koin.core.Koin
 import org.koin.dsl.module
 
 /**
+ * Global application modules.
+ */
+val appModules = module {
+    module { single<NotesRepository> { FirebaseNotesRepository() } }
+}
+
+/**
  * List of [Koin] modules.
  */
 val modules = listOf(
-    module { single<NotesRepository> { FirebaseNotesRepository() } },
+    appModules,
     homeModule,
     addEditNoteModule
 )
