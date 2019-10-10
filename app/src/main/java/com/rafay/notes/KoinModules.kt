@@ -11,7 +11,7 @@ import org.koin.dsl.module
  * Global application modules.
  */
 val appModules = module {
-    module { single<NotesRepository> { FirebaseNotesRepository() } }
+    single<NotesRepository> { FirebaseNotesRepository() }
 }
 
 /**

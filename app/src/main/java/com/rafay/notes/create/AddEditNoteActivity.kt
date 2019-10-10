@@ -14,8 +14,7 @@ import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import com.rafay.notes.util.dataBinding
 import kotlinx.android.synthetic.main.activity_create_edit_note.view.*
-import org.koin.android.ext.android.bind
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class AddEditNoteActivity : AppCompatActivity() {
 
@@ -25,7 +24,7 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     private lateinit var transition: Transition.TransitionListener
 
-    private val viewModel by inject<AddEditNoteViewModel>()
+    private val viewModel by viewModel<AddEditNoteViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

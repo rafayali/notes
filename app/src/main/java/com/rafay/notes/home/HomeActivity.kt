@@ -11,12 +11,12 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rafay.notes.R
+import com.rafay.notes.common.Result
+import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
-import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
-import com.rafay.notes.common.Result
 import com.rafay.notes.util.dataBinding
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * Entry point of Notes .
@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val binding by dataBinding<ActivityHomeBinding>(R.layout.activity_home)
 
-    private val viewModel by inject<HomeViewModel>()
+    private val viewModel by viewModel<HomeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,7 +93,7 @@ class HomeActivity : AppCompatActivity() {
         )
     }
 
-    private fun setupViewModelObservers(){
+    private fun setupViewModelObservers() {
         viewModel.notes.observe(this, Observer {
             when (it) {
                 is Result.Success -> {
