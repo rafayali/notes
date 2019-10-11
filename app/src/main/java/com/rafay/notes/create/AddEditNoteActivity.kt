@@ -22,7 +22,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         R.layout.activity_create_edit_note
     )
 
-    private lateinit var transition: Transition.TransitionListener
+//    private lateinit var transition: Transition.TransitionListener
 
     private val viewModel by viewModel<AddEditNoteViewModel>()
 
@@ -31,7 +31,7 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         setContent()
 
-        applyTransitions()
+//        applyTransitions()
 
         bindViews()
 
@@ -86,7 +86,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         binding.flBackground.background = Color.parseColor(bgColor).toDrawable()
     }
 
-    private fun applyTransitions() {
+    /*private fun applyTransitions() {
         ViewCompat.setTransitionName(binding.editTitle, VIEW_NAME_TITLE)
         ViewCompat.setTransitionName(binding.editDescription, VIEW_NAME_DESCRIPTION)
 
@@ -97,7 +97,7 @@ class AddEditNoteActivity : AppCompatActivity() {
                 it.removeListener(transition)
             }
         )
-    }
+    }*/
 
     companion object {
         const val KEY_STRING_TITLE = "title"

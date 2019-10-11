@@ -1,9 +1,7 @@
 package com.rafay.notes.home
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.util.Pair
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -45,14 +43,14 @@ class HomeActivity : AppCompatActivity() {
         val notesAdapter = NotesAdapter { id, view ->
             val note = (viewModel.notes.value as Result.Success).data.first { it.id == id }
 
-            val options = ActivityOptions.makeSceneTransitionAnimation(
+            /*val options = ActivityOptions.makeSceneTransitionAnimation(
                 this,
                 Pair(view.findViewById(R.id.text_title), AddEditNoteActivity.VIEW_NAME_TITLE),
                 Pair(
                     view.findViewById(R.id.text_description),
                     AddEditNoteActivity.VIEW_NAME_DESCRIPTION
                 )
-            )
+            )*/
 
             val bundle = bundleOf(
                 AddEditNoteActivity.KEY_STRING_TITLE to note.title,
@@ -63,8 +61,7 @@ class HomeActivity : AppCompatActivity() {
                 Intent(
                     this,
                     AddEditNoteActivity::class.java
-                ).apply { putExtras(bundle) },
-                options.toBundle()
+                ).apply { putExtras(bundle) }
             )
         }
 

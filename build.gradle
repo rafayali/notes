@@ -65,7 +65,7 @@ subprojects {
         }
     }
 
-    // `spotlessCheck` runs when a build includes `check`, notably during presubmit. In these cases
+    // `spotlessCheck` runs when a build includes `check`, notably during pre-submit. In these cases
     // we prefer `spotlessCheck` run as early as possible since it fails in seconds. This prevents a
     // build from running for several minutes doing other intensive tasks (resource processing, code
     // generation, compilation, etc) only to fail on a formatting nit.
