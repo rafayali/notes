@@ -48,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <EditText
-                android:id="@+id/textView_title"
+                android:id="@+id/edit_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -65,7 +65,7 @@
                 tools:ignore="Autofill" />
 
             <EditText
-                android:id="@+id/textView_description"
+                android:id="@+id/edit_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"

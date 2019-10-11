@@ -68,7 +68,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
 
         binding.fabDone.setOnClickListener {
-            viewModel.save()
+            viewModel.save(binding.editTitle.text.toString())
             onBackPressed()
         }
     }
@@ -81,14 +81,14 @@ class AddEditNoteActivity : AppCompatActivity() {
         val title = intent.extras?.getString(KEY_STRING_TITLE, "") ?: ""
         val description = intent.extras?.getString(KEY_STRING_DESCRIPTION, "") ?: ""
 
-        binding.textViewTitle.setText(title)
-        binding.textViewDescription.setText(description)
+        binding.editTitle.setText(title)
+        binding.editDescription.setText(description)
         binding.flBackground.background = Color.parseColor(bgColor).toDrawable()
     }
 
     private fun applyTransitions() {
-        ViewCompat.setTransitionName(binding.textViewTitle, VIEW_NAME_TITLE)
-        ViewCompat.setTransitionName(binding.textViewDescription, VIEW_NAME_DESCRIPTION)
+        ViewCompat.setTransitionName(binding.editTitle, VIEW_NAME_TITLE)
+        ViewCompat.setTransitionName(binding.editDescription, VIEW_NAME_DESCRIPTION)
 
         transition = window.sharedElementEnterTransition.addListener(
             onCancel = {

@@ -12,13 +12,13 @@ class AddEditNoteViewModel(
     private val notesRepository: NotesRepository
 ) : ViewModel() {
 
-    fun save() {
+    fun save(title: String, note: String? = null, colorHex: String? = null) {
         viewModelScope.launch {
             notesRepository.create(
-                "Call Maggie!",
-                "A test description about task.",
+                title,
+                note ?: "",
                 false,
-                "#009688"
+                colorHex ?: "#009688"
             )
         }
     }
