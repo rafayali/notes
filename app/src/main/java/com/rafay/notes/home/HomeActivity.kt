@@ -41,16 +41,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val notesAdapter = NotesAdapter { id, view ->
-            val note = (viewModel.notes.value as Result.Success).data.first { it.id == id }
-
-            /*val options = ActivityOptions.makeSceneTransitionAnimation(
-                this,
-                Pair(view.findViewById(R.id.text_title), AddEditNoteActivity.VIEW_NAME_TITLE),
-                Pair(
-                    view.findViewById(R.id.text_description),
-                    AddEditNoteActivity.VIEW_NAME_DESCRIPTION
-                )
-            )*/
+            val note = (viewModel.notes.value as Result.Success).data.first { it.uId == id }
 
             val bundle = bundleOf(
                 AddEditNoteActivity.KEY_STRING_TITLE to note.title,

@@ -46,7 +46,7 @@ class NotesAdapter(
     }
 
     override fun getItemId(position: Int): Long {
-        return getItem(position).id
+        return getItem(position).uId
     }
 
     /**
@@ -61,7 +61,7 @@ class NotesAdapter(
 
             binding.note = item
             binding.let {
-                it.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
+                it.root.setOnClickListener { onItemSelected.invoke(item.uId, binding.root) }
             }
             binding.imageViewOptions.setOnClickListener { }
             binding.clParent.background = createNoteDrawable(context, item.backgroundColorHex)
@@ -70,7 +70,7 @@ class NotesAdapter(
         }
 
         /**
-         * Create [RippleDrawable] background for note item.
+         * Creates [RippleDrawable] background for note item.
          */
         private fun createNoteDrawable(context: Context, backgroundColor: String?): RippleDrawable {
             return RippleDrawable(
@@ -87,7 +87,7 @@ class NotesAdapter(
                     )
                     cornerRadius = 16.toDp(context).toFloat()
                     if (backgroundColor != null){
-                        setColor(Color.parseColor(backgroundColor))
+                        setColor(Color.parseColor("#$backgroundColor"))
                     } else {
                         setColor(ContextCompat.getColor(context, R.color.defaultNoteColor))
                     }
@@ -102,7 +102,7 @@ class NotesAdapter(
      */
     private class TodoDiffCallback : DiffUtil.ItemCallback<NoteUiModel>() {
         override fun areItemsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.uId == newItem.uId
         }
 
         override fun areContentsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {

@@ -1,5 +1,6 @@
 package com.rafay.notes.create
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafay.notes.repository.NotesRepository
@@ -12,13 +13,17 @@ class AddEditNoteViewModel(
     private val notesRepository: NotesRepository
 ) : ViewModel() {
 
-    fun save(title: String, description: String? = null, colorHex: String? = null) {
+    val title = MutableLiveData<String>()
+
+    val notes = MutableLiveData<String>()
+
+    fun save(title: String, description: String? = null, color: String? = null) {
         viewModelScope.launch {
             notesRepository.create(
                 title,
                 description ?: "",
                 false,
-                colorHex ?: "#009688"
+                color ?: "009688"
             )
         }
     }

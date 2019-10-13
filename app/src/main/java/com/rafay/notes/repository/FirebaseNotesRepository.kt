@@ -64,7 +64,7 @@ class FirebaseNotesRepository : NotesRepository {
             id = docRef.id,
             title = title,
             description = description,
-            backgroundColorHex = backgroundHexColor
+            backgroundColor = backgroundHexColor
         )
         docRef.set(note)
     }
