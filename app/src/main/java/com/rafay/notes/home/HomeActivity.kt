@@ -14,6 +14,7 @@ import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
 import com.rafay.notes.util.dataBinding
+import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -86,13 +87,32 @@ class HomeActivity : AppCompatActivity() {
             when (it) {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
+
+                    if (it.data.isEmpty()) {
+                        binding.recyclerView.visibility = View.GONE
+
+                        binding.clRetry.visibility = View.VISIBLE
+                        binding.textMessage.visibility = View.VISIBLE
+                        binding.textMessage.text = getString(R.string.home_no_notes)
+                        binding.buttonRetry.visibility = View.GONE
+                    } else {
+                        binding.recyclerView.visibility = View.VISIBLE
+                        binding.clRetry.visibility = View.GONE
+                    }
+
                     (binding.recyclerView.adapter as NotesAdapter).submitList(it.data)
                 }
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.clRetry.visibility = View.GONE
+                    binding.recyclerView.visibility = View.GONE
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
+                    binding.clRetry.visibility = View.VISIBLE
+                    binding.textMessage.text = getString(R.string.home_retry_text)
+                    binding.buttonRetry.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
                 }
             }
         })

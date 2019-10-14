@@ -6,4 +6,5 @@
     <string name="home_retry_button">Retry</string>
     <string name="home_retry_text">You are in offline mode. Check your wi-fi setting and try again.</string>
     <string name="home_toolbar_title">Notes</string>
+    <string name="home_no_notes">You dont have any notes. \nAdd some using + button.</string>
 </resources>

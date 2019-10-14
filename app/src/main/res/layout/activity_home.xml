@@ -69,7 +69,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/text_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -83,7 +83,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/retryButton"
+                android:id="@+id/button_retry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
