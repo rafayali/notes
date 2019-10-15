@@ -9,7 +9,7 @@ import java.util.*
  */
 data class Note(
     val id: String? = null,
-    val uId: Long = UUID.randomUUID().mostSignificantBits,
+    val itemId: Long = UUID.randomUUID().mostSignificantBits,
     val title: String? = null,
     val description: String? = null,
     val done: Boolean = false,
@@ -21,6 +21,8 @@ data class Note(
 
 fun Note.toNoteUiModel(): NoteUiModel {
     return NoteUiModel(
+        id = itemId,
+        documentId = id!!,
         title = title!!,
         description = description,
         backgroundColorHex = backgroundColor,

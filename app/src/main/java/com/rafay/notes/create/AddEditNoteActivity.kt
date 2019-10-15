@@ -2,14 +2,11 @@ package com.rafay.notes.create
 
 import android.graphics.Color
 import android.os.Bundle
-import android.transition.Transition
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
-import androidx.core.transition.addListener
-import androidx.core.view.ViewCompat
 import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import com.rafay.notes.util.dataBinding

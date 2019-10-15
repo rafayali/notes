@@ -14,11 +14,10 @@ import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
 import com.rafay.notes.util.dataBinding
-import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
- * Entry point of Notes .
+ * Entry point of Notes.
  */
 class HomeActivity : AppCompatActivity() {
 
@@ -42,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val notesAdapter = NotesAdapter { id, view ->
-            val note = (viewModel.notes.value as Result.Success).data.first { it.uId == id }
+            val note = (viewModel.notes.value as Result.Success).data.first { it.id == id }
 
             val bundle = bundleOf(
                 AddEditNoteActivity.KEY_STRING_TITLE to note.title,

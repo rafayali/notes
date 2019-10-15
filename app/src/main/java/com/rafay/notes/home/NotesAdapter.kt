@@ -46,7 +46,7 @@ class NotesAdapter(
     }
 
     override fun getItemId(position: Int): Long {
-        return getItem(position).uId
+        return getItem(position).id
     }
 
     /**
@@ -61,7 +61,7 @@ class NotesAdapter(
 
             binding.note = item
             binding.let {
-                it.root.setOnClickListener { onItemSelected.invoke(item.uId, binding.root) }
+                it.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
             }
             binding.imageViewOptions.setOnClickListener { }
             binding.clParent.background = createNoteDrawable(context, item.backgroundColorHex)
@@ -102,7 +102,7 @@ class NotesAdapter(
      */
     private class TodoDiffCallback : DiffUtil.ItemCallback<NoteUiModel>() {
         override fun areItemsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {
-            return oldItem.uId == newItem.uId
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {

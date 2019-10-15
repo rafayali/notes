@@ -7,7 +7,8 @@ import java.util.*
  * Ui model class for [Note].
  */
 data class NoteUiModel(
-    val uId: Long = UUID.randomUUID().mostSignificantBits,
+    val id: Long,
+    val documentId: String,
     val title: String,
     val description: String?,
     val backgroundColorHex: String? = null,
