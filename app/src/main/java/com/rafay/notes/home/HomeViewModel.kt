@@ -6,13 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafay.notes.common.Result
 import com.rafay.notes.repository.NotesRepository
+import com.rafay.notes.repository.models.Note
 import com.rafay.notes.repository.models.toNoteUiModel
 import kotlinx.coroutines.launch
 
 /**
  * [ViewModel] for [HomeActivity].
- *
- * @author Rafay Ali
  */
 class HomeViewModel(notesRepository: NotesRepository) : ViewModel() {
 

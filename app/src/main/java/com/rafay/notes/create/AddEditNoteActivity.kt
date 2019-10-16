@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
+import androidx.lifecycle.Observer
 import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import com.rafay.notes.util.dataBinding
@@ -27,6 +28,8 @@ class AddEditNoteActivity : AppCompatActivity() {
         setContent()
 
         bindViews()
+
+        setupViewModelObservers()
 
         binding.clParent.setOnApplyWindowInsetsListener { _, insets ->
             val lpToolbar = (binding.toolbar.layoutParams as ViewGroup.MarginLayoutParams).apply {
@@ -49,15 +52,15 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
 
         binding.llColorPanel.image_blue_button.setOnClickListener {
-            Toast.makeText(this, "Blue", Toast.LENGTH_SHORT).show()
+            viewModel.setColor("2196F3")
         }
 
         binding.llColorPanel.image_green_button.setOnClickListener {
-            Toast.makeText(this, "Green", Toast.LENGTH_SHORT).show()
+            viewModel.setColor("4CAF50")
         }
 
         binding.llColorPanel.image_purple_button.setOnClickListener {
-            Toast.makeText(this, "Purple", Toast.LENGTH_SHORT).show()
+            viewModel.setColor("673AB7")
         }
 
         binding.fabDone.setOnClickListener {
@@ -76,7 +79,13 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         binding.editTitle.setText(title)
         binding.editDescription.setText(description)
-        binding.flBackground.background = Color.parseColor(bgColor).toDrawable()
+        binding.flBackground.background = Color.parseColor("#$bgColor").toDrawable()
+    }
+
+    private fun setupViewModelObservers(){
+        viewModel.color.observe(this, Observer {
+            binding.flBackground.background = Color.parseColor("#$it").toDrawable()
+        })
     }
 
     companion object {
