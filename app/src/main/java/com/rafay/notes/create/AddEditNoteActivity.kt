@@ -3,7 +3,6 @@ package com.rafay.notes.create
 import android.graphics.Color
 import android.os.Bundle
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
@@ -73,16 +72,19 @@ class AddEditNoteActivity : AppCompatActivity() {
         val defaultColor =
             "#${Integer.toHexString(ContextCompat.getColor(this, R.color.defaultNoteColor))}"
         val bgColor =
-            intent.extras?.getString(KEY_STRING_BG_COLOR_HEX, defaultColor) ?: defaultColor
+            intent.extras?.getString(
+                KEY_STRING_BG_COLOR_HEX,
+                defaultColor
+            )?.let { color -> "#$color" } ?: defaultColor
         val title = intent.extras?.getString(KEY_STRING_TITLE, "") ?: ""
         val description = intent.extras?.getString(KEY_STRING_DESCRIPTION, "") ?: ""
 
         binding.editTitle.setText(title)
         binding.editDescription.setText(description)
-        binding.flBackground.background = Color.parseColor("#$bgColor").toDrawable()
+        binding.flBackground.background = Color.parseColor(bgColor).toDrawable()
     }
 
-    private fun setupViewModelObservers(){
+    private fun setupViewModelObservers() {
         viewModel.color.observe(this, Observer {
             binding.flBackground.background = Color.parseColor("#$it").toDrawable()
         })
