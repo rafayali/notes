@@ -14,6 +14,7 @@ import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
 import com.rafay.notes.util.dataBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -25,6 +26,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<HomeViewModel>()
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -81,8 +83,9 @@ class HomeActivity : AppCompatActivity() {
         )
     }
 
+    @ExperimentalCoroutinesApi
     private fun setupViewModelObservers() {
-        viewModel.notes.observe(this, Observer {
+        viewModel.notesLiveDataBuilder.observe(this, Observer {
             when (it) {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE

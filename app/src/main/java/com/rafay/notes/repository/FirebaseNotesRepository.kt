@@ -2,10 +2,9 @@ package com.rafay.notes.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.rafay.notes.repository.models.Note
-import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import timber.log.Timber
@@ -16,7 +15,7 @@ import timber.log.Timber
 class FirebaseNotesRepository : NotesRepository {
 
     private val todoCollection = FirebaseFirestore.getInstance().collection(
-        FIRESTORE_COLLECTION_PATH
+        FirestoreCollections.notes
     )
 
     override suspend fun getAll(callback: (noteList: List<Note>) -> Unit) = coroutineScope {
@@ -51,6 +50,27 @@ class FirebaseNotesRepository : NotesRepository {
         }
 
         return@coroutineScope listOf<Note>()
+    }
+
+    @ExperimentalCoroutinesApi
+    override suspend fun observeNotes() = callbackFlow<List<Note>> {
+        val listener =
+            todoCollection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                querySnapshot?.let { snapshot ->
+                    val notes = snapshot.toObjects(Note::class.java).also { list ->
+                        list.forEach { todo ->
+                            Timber.d(todo.toString())
+                        }
+                    }
+                    offer(notes)
+                }
+
+                firebaseFirestoreException?.let { exception ->
+                    close(exception)
+                }
+            }
+
+        awaitClose { listener.remove() }
     }
 
     override suspend fun create(

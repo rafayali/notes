@@ -1,6 +1,7 @@
 package com.rafay.notes.repository
 
 import com.rafay.notes.repository.models.Note
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Interface for Notes repository.
@@ -12,6 +13,13 @@ interface NotesRepository {
      * @return [List] of [Note]
      */
     suspend fun getAll(callback: (List<Note>) -> Unit): List<Note>
+
+    /**
+     * Returns list of [Note] for logged-in user.
+     *
+     * @return [Flow] of [Note]
+     */
+    suspend fun observeNotes(): Flow<List<Note>>
 
     /**
      * Returns [Note] of specified [id].
