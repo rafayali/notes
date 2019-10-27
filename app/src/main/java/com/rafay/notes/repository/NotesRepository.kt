@@ -30,7 +30,9 @@ interface NotesRepository {
         backgroundHexColor: String
     )
 
-
+    /**
+     * Updates existing [Note].
+     */
     suspend fun update(note: Note)
 
     /**
