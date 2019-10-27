@@ -5,7 +5,6 @@ import com.rafay.notes.common.Result
 import com.rafay.notes.repository.NotesRepository
 import com.rafay.notes.repository.models.toNoteUiModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -21,7 +20,7 @@ class HomeViewModel(notesRepository: NotesRepository) : ViewModel() {
     @ExperimentalCoroutinesApi
     val notesLiveDataBuilder: LiveData<Result<List<NoteUiModel>>> = liveData {
         emitSource(
-            notesRepository.observeNotes()
+            notesRepository.observe()
                 .onStart { Result.Loading }
                 .map {
                     Result.Success(it.map { note -> note.toNoteUiModel() })
@@ -31,7 +30,7 @@ class HomeViewModel(notesRepository: NotesRepository) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            notesRepository.getAll { notes ->
+            notesRepository.observe { notes ->
                 _notes.postValue(
                     Result.Success(
                         notes.map {

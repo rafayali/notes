@@ -14,26 +14,22 @@ import timber.log.Timber
  */
 class FirebaseNotesRepository : NotesRepository {
 
-    private val todoCollection = FirebaseFirestore.getInstance().collection(
+    private val notesCollection = FirebaseFirestore.getInstance().collection(
         FirestoreCollections.notes
     )
 
-    override suspend fun getAll(callback: (noteList: List<Note>) -> Unit) = coroutineScope {
+    override suspend fun observe(callback: (noteList: List<Note>) -> Unit) = coroutineScope {
         val completable = CompletableDeferred<Unit>()
         val mutex = Mutex()
         var job: Job? = null
 
         val listener =
-            todoCollection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            notesCollection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 querySnapshot?.let { snapshot ->
                     job?.cancel()
                     job = launch {
                         mutex.withLock {
-                            callback(snapshot.toObjects(Note::class.java).also { list ->
-                                list.forEach { todo ->
-                                    Timber.d(todo.toString())
-                                }
-                            })
+                            callback(snapshot.toObjects(Note::class.java))
                         }
                     }
                 }
@@ -53,16 +49,11 @@ class FirebaseNotesRepository : NotesRepository {
     }
 
     @ExperimentalCoroutinesApi
-    override suspend fun observeNotes() = callbackFlow<List<Note>> {
+    override suspend fun observe() = callbackFlow<List<Note>> {
         val listener =
-            todoCollection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            notesCollection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 querySnapshot?.let { snapshot ->
-                    val notes = snapshot.toObjects(Note::class.java).also { list ->
-                        list.forEach { todo ->
-                            Timber.d(todo.toString())
-                        }
-                    }
-                    offer(notes)
+                    offer(snapshot.toObjects(Note::class.java))
                 }
 
                 firebaseFirestoreException?.let { exception ->
@@ -79,7 +70,7 @@ class FirebaseNotesRepository : NotesRepository {
         done: Boolean,
         backgroundHexColor: String
     ) {
-        val docRef = todoCollection.document()
+        val docRef = notesCollection.document()
         val note = Note(
             id = docRef.id,
             title = title,

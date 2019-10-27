@@ -12,14 +12,14 @@ interface NotesRepository {
      *
      * @return [List] of [Note]
      */
-    suspend fun getAll(callback: (List<Note>) -> Unit): List<Note>
+    suspend fun observe(callback: (List<Note>) -> Unit): List<Note>
 
     /**
      * Returns list of [Note] for logged-in user.
      *
      * @return [Flow] of [Note]
      */
-    suspend fun observeNotes(): Flow<List<Note>>
+    suspend fun observe(): Flow<List<Note>>
 
     /**
      * Returns [Note] of specified [id].
