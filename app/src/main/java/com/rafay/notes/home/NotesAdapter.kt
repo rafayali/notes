@@ -86,7 +86,7 @@ class NotesAdapter(
                         ContextCompat.getColor(binding.root.context, R.color.noteShapeBorder)
                     )
                     cornerRadius = 16.toDp(context).toFloat()
-                    if (backgroundColor != null){
+                    if (backgroundColor != null) {
                         setColor(Color.parseColor("#$backgroundColor"))
                     } else {
                         setColor(ContextCompat.getColor(context, R.color.defaultNoteColor))

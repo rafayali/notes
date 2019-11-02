@@ -32,7 +32,7 @@ class AddEditNoteViewModel(
         }
     }
 
-    fun setColor(color: String){
+    fun setColor(color: String) {
         _color.postValue(color)
     }
 }

@@ -1,5 +1,5 @@
 package com.rafay.notes.repository
 
-object FirestoreCollections{
+object FirestoreCollections {
     const val notes = "notes"
 }
