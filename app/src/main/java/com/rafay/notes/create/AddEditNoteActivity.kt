@@ -3,30 +3,27 @@ package com.rafay.notes.create
 import android.graphics.Color
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
-import com.rafay.notes.util.dataBinding
 import kotlinx.android.synthetic.main.activity_create_edit_note.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class AddEditNoteActivity : AppCompatActivity() {
 
-    private val binding by dataBinding<ActivityCreateEditNoteBinding>(
-        R.layout.activity_create_edit_note
-    )
+    private lateinit var binding: ActivityCreateEditNoteBinding
 
-    private val viewModel by viewModel<AddEditNoteViewModel>()
+    private val viewModel by viewModel<AddEditNoteViewModel> { parametersOf(intent.extras) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContent()
-
-        bindViews()
+        initView()
 
         setupViewModelObservers()
 
@@ -45,7 +42,11 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun bindViews() {
+    private fun initView() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_create_edit_note)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -63,30 +64,31 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
 
         binding.fabDone.setOnClickListener {
-            viewModel.save(binding.editTitle.text.toString())
+            viewModel.save()
             onBackPressed()
         }
-    }
-
-    private fun setContent() {
-        val defaultColor =
-            "#${Integer.toHexString(ContextCompat.getColor(this, R.color.defaultNoteColor))}"
-        val bgColor =
-            intent.extras?.getString(
-                KEY_STRING_BG_COLOR_HEX,
-                defaultColor
-            )?.let { color -> "#$color" } ?: defaultColor
-        val title = intent.extras?.getString(KEY_STRING_TITLE, "") ?: ""
-        val description = intent.extras?.getString(KEY_STRING_DESCRIPTION, "") ?: ""
-
-        binding.editTitle.setText(title)
-        binding.editDescription.setText(description)
-        binding.flBackground.background = Color.parseColor(bgColor).toDrawable()
     }
 
     private fun setupViewModelObservers() {
         viewModel.color.observe(this, Observer {
             binding.flBackground.background = Color.parseColor("#$it").toDrawable()
+        })
+
+        viewModel.validationEvent.observe(this, Observer {
+            it.consume()?.let { event ->
+                when (event) {
+                    AddEditNoteViewModel.ValidationEvent.EmptyTitle -> {
+                        Toast.makeText(
+                            this,
+                            "Please enter a title",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    AddEditNoteViewModel.ValidationEvent.Valid -> {
+                        viewModel.save()
+                    }
+                }
+            }
         })
     }
 

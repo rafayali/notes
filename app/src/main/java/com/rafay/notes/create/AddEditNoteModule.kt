@@ -1,8 +1,20 @@
 package com.rafay.notes.create
 
+import android.os.Bundle
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val addEditNoteModule = module {
-    viewModel { AddEditNoteViewModel(notesRepository = get()) }
+    viewModel { (bundle: Bundle?) ->
+        val title = bundle?.getString(AddEditNoteActivity.KEY_STRING_TITLE)
+        val notes = bundle?.getString(AddEditNoteActivity.KEY_STRING_DESCRIPTION)
+        val color = bundle?.getString(AddEditNoteActivity.KEY_STRING_BG_COLOR_HEX)
+
+        AddEditNoteViewModel(
+            title = title,
+            notes = notes,
+            color = color ?: AddEditNoteViewModel.DEFAULT_COLOR,
+            notesRepository = get()
+        )
+    }
 }

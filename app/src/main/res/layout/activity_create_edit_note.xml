@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.rafay.notes.create.AddEditNoteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,6 +56,7 @@
                 android:layout_marginTop="4dp"
                 android:background="@null"
                 android:hint="@string/add_edit_todo_title"
+                android:text="@={viewModel.title}"
                 android:inputType="text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#FFFFFF"
@@ -71,6 +74,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@null"
                 android:gravity="start"
+                android:text="@={viewModel.notes}"
                 android:hint="@string/add_edit_todo_description"
                 android:inputType="textMultiLine"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
