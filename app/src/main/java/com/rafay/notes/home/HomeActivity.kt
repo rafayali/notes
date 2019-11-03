@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.widget.NestedScrollView
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rafay.notes.R
@@ -13,7 +14,6 @@ import com.rafay.notes.common.Result
 import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
-import com.rafay.notes.util.dataBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -22,7 +22,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
  */
 class HomeActivity : AppCompatActivity() {
 
-    private val binding by dataBinding<ActivityHomeBinding>(R.layout.activity_home)
+    private lateinit var binding: ActivityHomeBinding
 
     private val viewModel by viewModel<HomeViewModel>()
 
@@ -30,26 +30,35 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.fab.setOnClickListener {
-            Intent(this, AddEditNoteActivity::class.java).also {
-                startActivity(it)
-            }
-        }
+        initView()
 
         setupRecyclerView()
 
         setupViewModelObservers()
     }
 
+    private fun initView() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        binding.lifecycleOwner = this
+
+        binding.fab.setOnClickListener {
+            Intent(this, AddEditNoteActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+    }
+
     private fun setupRecyclerView() {
-        val notesAdapter = NotesAdapter { id, view ->
+        val notesAdapter = NotesAdapter { id, _ ->
             val note = (viewModel.notes.value as Result.Success).data.first { it.id == id }
 
             val bundle = bundleOf(
+                AddEditNoteActivity.KEY_STRING_ID to note.documentId,
                 AddEditNoteActivity.KEY_STRING_TITLE to note.title,
                 AddEditNoteActivity.KEY_STRING_DESCRIPTION to note.description,
                 AddEditNoteActivity.KEY_STRING_BG_COLOR_HEX to note.backgroundColorHex
             )
+
             startActivity(
                 Intent(
                     this,
@@ -71,7 +80,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         /*
-        Fixes an issue with AppBarLayout "liftOnScroll" function where AapBarLayout would not
+        Fixes an issue with AppBarLayout "liftOnScroll" function where AapBartayout would not
         lift down when scrolling is idle after reaching top.
          */
         binding.nestedScrollView.setOnScrollChangeListener(
@@ -85,7 +94,7 @@ class HomeActivity : AppCompatActivity() {
 
     @ExperimentalCoroutinesApi
     private fun setupViewModelObservers() {
-        viewModel.notesLiveDataBuilder.observe(this, Observer {
+        viewModel.notes.observe(this, Observer {
             when (it) {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE

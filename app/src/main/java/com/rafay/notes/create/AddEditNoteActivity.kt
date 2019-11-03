@@ -93,6 +93,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     companion object {
+        const val KEY_STRING_ID = "id"
         const val KEY_STRING_TITLE = "title"
         const val KEY_STRING_DESCRIPTION = "description"
         const val KEY_STRING_BG_COLOR_HEX = "bgColor"

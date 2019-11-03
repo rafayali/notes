@@ -15,6 +15,7 @@ class AddEditNoteViewModel(
     title: String?,
     notes: String?,
     color: String,
+    private val id: String?,
     private val notesRepository: NotesRepository
 ) : ViewModel() {
 
@@ -30,25 +31,26 @@ class AddEditNoteViewModel(
 
     fun save() {
         viewModelScope.launch {
-            notesRepository.create(
+            notesRepository.createOrUpdate(
+                id,
                 title.value!!,
                 notes.value ?: "",
                 false,
-                _color.value ?: "009688"
+                _color.value!!
             )
         }
     }
 
-    fun setColor(color: String){
+    fun setColor(color: String) {
         _color.postValue(color)
     }
 
-    enum class ValidationEvent{
+    enum class ValidationEvent {
         EmptyTitle,
         Valid
     }
 
-    companion object{
-        public const val DEFAULT_COLOR = "009688"
+    companion object {
+        const val DEFAULT_COLOR = "009688"
     }
 }
