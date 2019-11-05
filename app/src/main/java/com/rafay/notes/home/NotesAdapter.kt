@@ -63,7 +63,6 @@ class NotesAdapter(
             binding.let {
                 it.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
             }
-            binding.imageViewOptions.setOnClickListener { }
             binding.clParent.background = createNoteDrawable(context, item.backgroundColorHex)
 
             binding.executePendingBindings()

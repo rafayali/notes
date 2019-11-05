@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rafay.notes.R
 import com.rafay.notes.common.Result
 import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
@@ -79,18 +79,6 @@ class HomeActivity : AppCompatActivity() {
             )
             adapter = notesAdapter
         }
-
-        /*
-        Fixes an issue with AppBarLayout "liftOnScroll" function where AapBarLayout would not
-        lift down when scrolling is idle after reaching top.
-         */
-        binding.nestedScrollView.setOnScrollChangeListener(
-            NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
-                if (scrollY <= 0) {
-                    binding.appBarLayout.setLifted(false)
-                }
-            }
-        )
     }
 
     @ExperimentalCoroutinesApi
