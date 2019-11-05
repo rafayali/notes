@@ -48,6 +48,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    @ExperimentalCoroutinesApi
     private fun setupRecyclerView() {
         val notesAdapter = NotesAdapter { id, _ ->
             val note = (viewModel.notes.value as Result.Success).data.first { it.id == id }
@@ -80,7 +81,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         /*
-        Fixes an issue with AppBarLayout "liftOnScroll" function where AapBartayout would not
+        Fixes an issue with AppBarLayout "liftOnScroll" function where AapBarLayout would not
         lift down when scrolling is idle after reaching top.
          */
         binding.nestedScrollView.setOnScrollChangeListener(
