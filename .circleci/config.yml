@@ -17,7 +17,7 @@ jobs:
           key: gradle-{{ checksum "build.gradle" }}
       - run:
           name: Add Google Services
-          command: echo $GOOGLE_SERVICES | base64 --decode > ~/${HOME}/app/google-services.json
+          command: echo $GOOGLE_SERVICES | base64 --decode > ~/notes/app/google-services.json
       - run:
           name: Download dependencies
           command: ./gradlew androidDependencies
