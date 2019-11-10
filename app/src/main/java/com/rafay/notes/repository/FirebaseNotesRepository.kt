@@ -7,7 +7,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
 /**
- * Concrete implementation of [NotesRepository] using firestore.
+ * Concrete implementation of [NotesRepository] using Firebase.
  */
 class FirebaseNotesRepository : NotesRepository {
 
@@ -50,6 +50,7 @@ class FirebaseNotesRepository : NotesRepository {
             description = description,
             backgroundColor = backgroundHexColor
         )
+
         docRef.set(note)
     }
 

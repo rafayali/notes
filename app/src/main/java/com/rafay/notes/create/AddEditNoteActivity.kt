@@ -26,6 +26,12 @@ class AddEditNoteActivity : AppCompatActivity() {
         initView()
 
         setupViewModelObservers()
+    }
+
+    private fun initView() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_create_edit_note)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         binding.clParent.setOnApplyWindowInsetsListener { _, insets ->
             val lpToolbar = (binding.toolbar.layoutParams as ViewGroup.MarginLayoutParams).apply {
@@ -40,12 +46,6 @@ class AddEditNoteActivity : AppCompatActivity() {
 
             insets.consumeSystemWindowInsets()
         }
-    }
-
-    private fun initView() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_create_edit_note)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
 
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
@@ -64,7 +64,6 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
 
         binding.fabDone.setOnClickListener {
-            viewModel.save()
             onBackPressed()
         }
     }
@@ -73,23 +72,11 @@ class AddEditNoteActivity : AppCompatActivity() {
         viewModel.color.observe(this, Observer {
             binding.flBackground.background = Color.parseColor("#$it").toDrawable()
         })
+    }
 
-        viewModel.validationEvent.observe(this, Observer {
-            it.consume()?.let { event ->
-                when (event) {
-                    AddEditNoteViewModel.ValidationEvent.EmptyTitle -> {
-                        Toast.makeText(
-                            this,
-                            "Please enter a title",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                    AddEditNoteViewModel.ValidationEvent.Valid -> {
-                        viewModel.save()
-                    }
-                }
-            }
-        })
+    override fun onBackPressed() {
+        viewModel.save()
+        super.onBackPressed()
     }
 
     companion object {
