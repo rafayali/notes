@@ -3,7 +3,6 @@ package com.rafay.notes.create
 import android.graphics.Color
 import android.os.Bundle
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
@@ -61,10 +60,6 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         binding.llColorPanel.image_purple_button.setOnClickListener {
             viewModel.setColor("673AB7")
-        }
-
-        binding.fabDone.setOnClickListener {
-            onBackPressed()
         }
     }
 
