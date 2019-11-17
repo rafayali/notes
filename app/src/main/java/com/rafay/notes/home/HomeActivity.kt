@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.rafay.notes.R
 import com.rafay.notes.common.Result
-import com.rafay.notes.common.recyclerview.GridDecoration
-import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -73,7 +71,7 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerView.apply {
             layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            setPadding(8,8,8,8)
+            setPadding(8, 8, 8, 8)
             clipToPadding = false
             clipChildren = false
             addItemDecoration(
@@ -84,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
                         parent: RecyclerView,
                         state: RecyclerView.State
                     ) {
-                        outRect.set(8,8,8,8)
+                        outRect.set(8, 8, 8, 8)
                     }
                 }
             )
