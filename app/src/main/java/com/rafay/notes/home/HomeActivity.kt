@@ -1,16 +1,18 @@
 package com.rafay.notes.home
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.rafay.notes.R
 import com.rafay.notes.common.Result
+import com.rafay.notes.common.recyclerview.GridDecoration
 import com.rafay.notes.common.recyclerview.GridSpacingItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
@@ -70,12 +72,21 @@ class HomeActivity : AppCompatActivity() {
 
         binding.recyclerView.apply {
             layoutManager =
-                GridLayoutManager(
-                    this@HomeActivity,
-                    2
-                )
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            setPadding(8,8,8,8)
+            clipToPadding = false
+            clipChildren = false
             addItemDecoration(
-                GridSpacingItemDecoration(2, 24, true)
+                object : RecyclerView.ItemDecoration() {
+                    override fun getItemOffsets(
+                        outRect: Rect,
+                        view: View,
+                        parent: RecyclerView,
+                        state: RecyclerView.State
+                    ) {
+                        outRect.set(8,8,8,8)
+                    }
+                }
             )
             adapter = notesAdapter
         }
