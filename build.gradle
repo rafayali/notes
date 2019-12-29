@@ -23,10 +23,17 @@ buildscript {
         threetenabpVersion = '1.2.1'
         firestoreVersion = "21.3.1"
         timberVersion = "4.7.1"
-        junitVersion = "4.12"
+        jUnitVersion = "4.12"
         testRunnerVersion = "1.2.0"
         espressoCoreVersion = "3.2.0"
         recyclerViewVersion = "1.1.0"
+        coreVersion = '1.2.0'
+        rulesVersion = '1.2.0'
+        jUnitExtVersion = '1.1.1'
+        truthExtVersion = '1.2.0'
+        truthVersion = '1.0'
+        robolectricVersion = '4.3.1'
+        guavaVersion = '28.2-jre'
     }
 
     repositories {

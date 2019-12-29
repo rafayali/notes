@@ -43,6 +43,12 @@ android {
     androidExtensions {
         experimental = true
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -70,6 +76,7 @@ dependencies {
     implementation "org.koin:koin-core:$rootProject.koinVersion"
     implementation "org.koin:koin-android-scope:$rootProject.koinVersion"
     implementation "org.koin:koin-android-viewmodel:$rootProject.koinVersion"
+    testImplementation 'org.koin:koin-test:' + rootProject.koinVersion
 
     // Firebase
     implementation "com.google.firebase:firebase-firestore:$rootProject.firestoreVersion"
@@ -81,9 +88,24 @@ dependencies {
     implementation "com.jakewharton.threetenabp:threetenabp:$rootProject.threetenabpVersion"
 
     // Testing
-    testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoCoreVersion"
+    androidTestImplementation "androidx.test:core:$rootProject.coreVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.rulesVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.jUnitExtVersion"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$rootProject.jUnitExtVersion"
+    androidTestImplementation "androidx.test.ext:truth:$rootProject.truthExtVersion"
+    androidTestImplementation 'com.google.truth:truth:' + rootProject.truthVersion
+
+    testImplementation 'androidx.test:core:' + rootProject.coreVersion
+    testImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoCoreVersion
+    testImplementation 'androidx.test.ext:junit:' + rootProject.jUnitExtVersion
+    testImplementation "junit:junit:$rootProject.jUnitVersion"
+    testImplementation 'org.robolectric:robolectric:' + rootProject.robolectricVersion
+    testImplementation "androidx.test.ext:truth:$rootProject.truthExtVersion"
+    testImplementation 'com.google.truth:truth:' + rootProject.truthVersion
+
+    implementation 'com.google.guava:guava:' + rootProject.guavaVersion
 }
 
 apply plugin: 'com.google.gms.google-services'
