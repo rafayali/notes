@@ -23,7 +23,7 @@ buildscript {
         threetenabpVersion = '1.2.1'
         firestoreVersion = "21.3.1"
         timberVersion = "4.7.1"
-        jUnitVersion = "4.12"
+        jUnitVersion = "4.13"
         testRunnerVersion = "1.2.0"
         espressoCoreVersion = "3.2.0"
         recyclerViewVersion = "1.1.0"
