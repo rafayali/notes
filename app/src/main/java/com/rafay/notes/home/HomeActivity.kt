@@ -51,10 +51,10 @@ class HomeActivity : AppCompatActivity() {
     @ExperimentalCoroutinesApi
     private fun setupRecyclerView() {
         val notesAdapter = NotesAdapter { id, _ ->
-            val note = (viewModel.notes.value as Result.Success).data.first { it.id == id }
+            val note = (viewModel.notesLocal.value as Result.Success).data.first { it.id == id }
 
             val bundle = bundleOf(
-                AddEditNoteActivity.KEY_STRING_ID to note.documentId,
+                AddEditNoteActivity.KEY_LONG_ID to note.id,
                 AddEditNoteActivity.KEY_STRING_TITLE to note.title,
                 AddEditNoteActivity.KEY_STRING_DESCRIPTION to note.description,
                 AddEditNoteActivity.KEY_STRING_BG_COLOR_HEX to note.backgroundColorHex
@@ -92,7 +92,7 @@ class HomeActivity : AppCompatActivity() {
 
     @ExperimentalCoroutinesApi
     private fun setupViewModelObservers() {
-        viewModel.notes.observe(this, Observer {
+        viewModel.notesLocal.observe(this, Observer {
             when (it) {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE

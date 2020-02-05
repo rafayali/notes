@@ -8,8 +8,8 @@ import java.util.*
  */
 data class NoteUiModel(
     val id: Long,
-    val documentId: String,
-    val title: String,
+    val noteId: Long?,
+    val title: String?,
     val description: String?,
     val backgroundColorHex: String? = null,
     val done: Boolean

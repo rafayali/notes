@@ -31,9 +31,11 @@ buildscript {
         rulesVersion = '1.2.0'
         jUnitExtVersion = '1.1.1'
         truthExtVersion = '1.2.0'
-        truthVersion = '1.0'
+        truthVersion = '1.0.1'
         robolectricVersion = '4.3.1'
         guavaVersion = '28.2-jre'
+        roomVersion = '2.2.3'
+        workVersion = '2.3.0'
     }
 
     repositories {

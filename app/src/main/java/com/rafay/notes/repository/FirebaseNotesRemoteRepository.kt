@@ -7,16 +7,14 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
 /**
- * Concrete implementation of [NotesRepository] using Firebase.
+ * Concrete implementation of [NotesRemoteRepository] using Firebase.
  */
-class FirebaseNotesRepository : NotesRepository {
+class FirebaseNotesRemoteRepository : NotesRemoteRepository {
 
-    private val notesCollection = FirebaseFirestore.getInstance().collection(
-        FirestoreCollections.notes
-    )
+    private val notesCollection = FirebaseFirestore.getInstance().collection(COLLECTION_NOTES)
 
     @ExperimentalCoroutinesApi
-    override suspend fun observe() = callbackFlow<List<Note>> {
+    override suspend fun all() = callbackFlow<List<Note>> {
         val listener =
             notesCollection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 querySnapshot?.let { snapshot ->
@@ -60,5 +58,9 @@ class FirebaseNotesRepository : NotesRepository {
 
     override suspend fun delete(id: String) {
         TODO("not implemented")
+    }
+
+    companion object {
+        private const val COLLECTION_NOTES = "notes"
     }
 }

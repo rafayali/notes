@@ -5,7 +5,7 @@
     <color name="colorAccent">#3D5AFE</color>
     <color name="noteShapeBorder">#405F5F5F</color>
     <color name="noteRipple">#25000000</color>
-    <color name="defaultNoteColor">#009688</color>
+    <color name="defaultNoteColor">#FFFFFF</color>
     <color name="noteBackgroundBlue">#2196F3</color>
     <color name="noteBackgroundPurple">#673AB7</color>
     <color name="noteBackgroundGreen">#4CAF50</color>

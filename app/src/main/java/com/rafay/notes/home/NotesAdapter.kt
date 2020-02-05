@@ -63,7 +63,7 @@ class NotesAdapter(
             binding.let {
                 it.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
             }
-            binding.clParent.background = createNoteDrawable(context, item.backgroundColorHex)
+            binding.clParent.background = createNoteDrawable(context, null)
 
             binding.executePendingBindings()
         }
@@ -71,6 +71,7 @@ class NotesAdapter(
         /**
          * Creates [RippleDrawable] background for note item.
          */
+        @Suppress("SameParameterValue")
         private fun createNoteDrawable(context: Context, backgroundColor: String?): RippleDrawable {
             return RippleDrawable(
                 ColorStateList.valueOf(
@@ -85,7 +86,7 @@ class NotesAdapter(
                         ContextCompat.getColor(binding.root.context, R.color.noteShapeBorder)
                     )
                     cornerRadius = 16.toDp(context).toFloat()
-                    if (backgroundColor != null){
+                    if (backgroundColor != null) {
                         setColor(Color.parseColor("#$backgroundColor"))
                     } else {
                         setColor(ContextCompat.getColor(context, R.color.defaultNoteColor))

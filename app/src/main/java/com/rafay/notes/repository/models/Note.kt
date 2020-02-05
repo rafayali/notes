@@ -1,11 +1,10 @@
 package com.rafay.notes.repository.models
 
 import com.google.firebase.Timestamp
-import com.rafay.notes.home.NoteUiModel
 import java.util.*
 
 /**
- * Data class to save/restore [Note] object from Firebase.
+ * Model class for notes remote data.
  */
 data class Note(
     val id: String? = null,
@@ -18,14 +17,3 @@ data class Note(
     val dateCreated: Timestamp = Timestamp.now(),
     val dateModified: Timestamp = Timestamp.now()
 )
-
-fun Note.toNoteUiModel(): NoteUiModel {
-    return NoteUiModel(
-        id = itemId,
-        documentId = id!!,
-        title = title!!,
-        description = description,
-        backgroundColorHex = backgroundColor,
-        done = done
-    )
-}

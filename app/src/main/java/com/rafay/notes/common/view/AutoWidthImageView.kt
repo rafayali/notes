@@ -2,9 +2,7 @@ package com.rafay.notes.common.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.widget.ImageViewCompat
 
 /**
  * ImageView which changes its width as much as its height to keep image in square shape.

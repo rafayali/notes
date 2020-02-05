@@ -87,6 +87,14 @@ dependencies {
     // Three Ten Backport Android
     implementation "com.jakewharton.threetenabp:threetenabp:$rootProject.threetenabpVersion"
 
+    // Room
+    implementation 'androidx.room:room-runtime:' + rootProject.roomVersion
+    implementation 'androidx.room:room-ktx:' + rootProject.roomVersion
+    kapt 'androidx.room:room-compiler:' + rootProject.roomVersion
+
+    // Work Manager
+    implementation 'androidx.work:work-runtime-ktx:' + rootProject.workVersion
+
     // Testing
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoCoreVersion"
@@ -96,13 +104,9 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit-ktx:$rootProject.jUnitExtVersion"
     androidTestImplementation "androidx.test.ext:truth:$rootProject.truthExtVersion"
     androidTestImplementation 'com.google.truth:truth:' + rootProject.truthVersion
+    androidTestImplementation "junit:junit:$rootProject.jUnitVersion"
 
-    testImplementation 'androidx.test:core:' + rootProject.coreVersion
-    testImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoCoreVersion
-    testImplementation 'androidx.test.ext:junit:' + rootProject.jUnitExtVersion
     testImplementation "junit:junit:$rootProject.jUnitVersion"
-    testImplementation 'org.robolectric:robolectric:' + rootProject.robolectricVersion
-    testImplementation "androidx.test.ext:truth:$rootProject.truthExtVersion"
     testImplementation 'com.google.truth:truth:' + rootProject.truthVersion
 
     implementation 'com.google.guava:guava:' + rootProject.guavaVersion

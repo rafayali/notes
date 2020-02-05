@@ -1,7 +1,7 @@
 package com.rafay.notes
 
+import com.google.common.truth.Truth
 import org.junit.Test
-import com.google.common.truth.Truth.assertThat
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -12,6 +12,6 @@ class ExampleUnitTest {
 
     @Test
     fun addition_isCorrect() {
-        assertThat(listOf("A","B")).hasSize(2)
+        Truth.assertThat(listOf("A", "B")).hasSize(2)
     }
 }

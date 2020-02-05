@@ -19,7 +19,6 @@
             android:id="@+id/fl_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#FF9800"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +31,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_close_white_24dp" />
+            app:navigationIcon="@drawable/ic_close_black_24dp" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -59,9 +58,9 @@
                 android:text="@={viewModel.title}"
                 android:inputType="text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="#FFFFFF"
                 android:textColorHint="#80FFFFFF"
                 android:textStyle="bold"
+                tools:text="Hello"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -76,9 +75,9 @@
                 android:gravity="start"
                 android:text="@={viewModel.notes}"
                 android:hint="@string/add_edit_todo_description"
+                tools:text="Hello"
                 android:inputType="textMultiLine"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#FFFFFF"
                 android:textColorHint="#80FFFFFF"
                 tools:ignore="Autofill" />
 
@@ -88,6 +87,7 @@
             android:id="@+id/ll_color_panel"
             android:layout_width="0dp"
             android:layout_height="56dp"
+            android:visibility="gone"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

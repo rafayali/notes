@@ -1,10 +1,8 @@
 package com.rafay.notes.create
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.rafay.notes.R
@@ -65,7 +63,7 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     private fun setupViewModelObservers() {
         viewModel.color.observe(this, Observer {
-            binding.flBackground.background = Color.parseColor("#$it").toDrawable()
+            //            binding.flBackground.background = Color.parseColor("#$it").toDrawable()
         })
     }
 
@@ -75,7 +73,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val KEY_STRING_ID = "id"
+        const val KEY_LONG_ID = "id"
         const val KEY_STRING_TITLE = "title"
         const val KEY_STRING_DESCRIPTION = "description"
         const val KEY_STRING_BG_COLOR_HEX = "bgColor"

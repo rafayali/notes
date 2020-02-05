@@ -6,14 +6,14 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Interface for Notes repository.
  */
-interface NotesRepository {
+interface NotesRemoteRepository {
 
     /**
      * Returns list of [Note] for logged-in user.
      *
      * @return [Flow] of [Note]
      */
-    suspend fun observe(): Flow<List<Note>>
+    suspend fun all(): Flow<List<Note>>
 
     /**
      * Returns [Note] of specified [id].
