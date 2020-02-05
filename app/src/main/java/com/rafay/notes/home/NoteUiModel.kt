@@ -1,7 +1,6 @@
 package com.rafay.notes.home
 
 import com.rafay.notes.repository.models.Note
-import java.util.*
 
 /**
  * Ui model class for [Note].
@@ -13,6 +12,6 @@ data class NoteUiModel(
     val description: String?,
     val backgroundColorHex: String? = null,
     val done: Boolean
-){
+) {
     fun isTitleBlank() = title?.isBlank() == true
 }
