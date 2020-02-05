@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.rafay.notes.create.AddEditNoteViewModel" />
@@ -55,16 +56,15 @@
                 android:layout_marginTop="4dp"
                 android:background="@null"
                 android:hint="@string/add_edit_todo_title"
-                android:text="@={viewModel.title}"
                 android:inputType="text"
+                android:text="@={viewModel.title}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColorHint="#80FFFFFF"
                 android:textStyle="bold"
-                tools:text="Hello"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
-                tools:ignore="Autofill" />
+                tools:ignore="Autofill"
+                tools:text="Hello" />
 
             <EditText
                 android:id="@+id/edit_description"
@@ -73,13 +73,12 @@
                 android:layout_marginTop="8dp"
                 android:background="@null"
                 android:gravity="start"
-                android:text="@={viewModel.notes}"
                 android:hint="@string/add_edit_todo_description"
-                tools:text="Hello"
                 android:inputType="textMultiLine"
+                android:text="@={viewModel.notes}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColorHint="#80FFFFFF"
-                tools:ignore="Autofill" />
+                tools:ignore="Autofill"
+                tools:text="Hello" />
 
         </LinearLayout>
 
@@ -87,8 +86,8 @@
             android:id="@+id/ll_color_panel"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:visibility="gone"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
