@@ -13,4 +13,6 @@ data class NoteUiModel(
     val description: String?,
     val backgroundColorHex: String? = null,
     val done: Boolean
-)
+){
+    fun isTitleBlank() = title?.isBlank() == true
+}

@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:visibility="@{note.title != null ? View.VISIBLE : View.GONE}"
+                android:visibility="@{note.isTitleBlank() ? View.GONE : View.VISIBLE}"
                 android:text="@{note.title}"
                 android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
