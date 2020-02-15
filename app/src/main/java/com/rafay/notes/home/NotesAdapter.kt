@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -31,12 +30,7 @@ class NotesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(
-            binding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.item_note,
-                parent,
-                false
-            ),
+            binding = ItemNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onItemSelected = onItemSelected
         )
     }
@@ -57,15 +51,18 @@ class NotesAdapter(
         private val onItemSelected: NoteOnClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NoteUiModel) {
-            val context = binding.root.context
+            binding.textTitle.text = item.title
+            binding.textDescription.text = item.description
 
-            binding.note = item
-            binding.let {
-                it.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
+            if (item.isTitleBlank()) {
+                binding.textTitle.visibility = View.GONE
+            } else {
+                binding.textTitle.visibility = View.VISIBLE
             }
-            binding.clParent.background = createNoteDrawable(context, null)
 
-            binding.executePendingBindings()
+            binding.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
+
+            binding.clParent.background = createNoteDrawable(binding.root.context, null)
         }
 
         /**

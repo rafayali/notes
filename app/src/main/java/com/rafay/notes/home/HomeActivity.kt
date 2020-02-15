@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -30,6 +29,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         initView()
 
         setupRecyclerView()
@@ -38,9 +40,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-        binding.lifecycleOwner = this
-
         binding.fab.setOnClickListener {
             Intent(this, AddEditNoteActivity::class.java).also {
                 startActivity(it)

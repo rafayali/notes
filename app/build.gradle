@@ -31,10 +31,6 @@ android {
         jvmTarget = '1.8'
     }
 
-    dataBinding{
-        enabled = true
-    }
-
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -44,10 +40,8 @@ android {
         experimental = true
     }
 
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-        }
+    viewBinding {
+        enabled = true
     }
 }
 
