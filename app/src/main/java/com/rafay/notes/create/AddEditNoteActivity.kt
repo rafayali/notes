@@ -75,7 +75,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         })
 
         viewModel.notes.observe(this, Observer {
-            if (binding.editDescription.text.toString() != it){
+            if (binding.editDescription.text.toString() != it) {
                 binding.editDescription.setText(it)
             }
         })

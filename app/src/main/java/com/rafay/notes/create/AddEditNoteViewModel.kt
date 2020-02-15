@@ -28,11 +28,11 @@ class AddEditNoteViewModel(
     private val _color = MutableLiveData<String>(color)
     val color: LiveData<String> = _color
 
-    fun setTitle(value: String){
+    fun setTitle(value: String) {
         _title.postValue(value)
     }
 
-    fun setNotes(value: String){
+    fun setNotes(value: String) {
         _notes.postValue(value)
     }
 
