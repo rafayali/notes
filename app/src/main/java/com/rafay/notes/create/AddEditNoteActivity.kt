@@ -3,9 +3,8 @@ package com.rafay.notes.create
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
-import com.rafay.notes.R
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import kotlinx.android.synthetic.main.activity_create_edit_note.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -20,16 +19,15 @@ class AddEditNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding = ActivityCreateEditNoteBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         initView()
 
         setupViewModelObservers()
     }
 
     private fun initView() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_create_edit_note)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-
         binding.clParent.setOnApplyWindowInsetsListener { _, insets ->
             val lpToolbar = (binding.toolbar.layoutParams as ViewGroup.MarginLayoutParams).apply {
                 topMargin += insets.systemWindowInsetTop
@@ -59,9 +57,29 @@ class AddEditNoteActivity : AppCompatActivity() {
         binding.llColorPanel.image_purple_button.setOnClickListener {
             viewModel.setColor("673AB7")
         }
+
+        binding.editTitle.doOnTextChanged { text, _, _, _ ->
+            viewModel.setTitle(text.toString())
+        }
+
+        binding.editDescription.doOnTextChanged { text, _, _, _ ->
+            viewModel.setNotes(text.toString())
+        }
     }
 
     private fun setupViewModelObservers() {
+        viewModel.title.observe(this, Observer {
+            if (binding.editTitle.text.toString() != it) {
+                binding.editTitle.setText(it)
+            }
+        })
+
+        viewModel.notes.observe(this, Observer {
+            if (binding.editDescription.text.toString() != it){
+                binding.editDescription.setText(it)
+            }
+        })
+
         viewModel.color.observe(this, Observer {
             //            binding.flBackground.background = Color.parseColor("#$it").toDrawable()
         })

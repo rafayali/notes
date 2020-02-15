@@ -2,6 +2,7 @@ package com.rafay.notes.create
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.NoteEntity
@@ -18,12 +19,22 @@ class AddEditNoteViewModel(
     private val notesDao: NotesDao
 ) : ViewModel() {
 
-    val title = MutableLiveData<String>(title)
+    private val _title = MutableLiveData<String>(title)
+    val title: LiveData<String> = Transformations.distinctUntilChanged(_title)
 
-    val notes = MutableLiveData<String>(notes)
+    private val _notes = MutableLiveData<String>(notes)
+    val notes: LiveData<String> = Transformations.distinctUntilChanged(_notes)
 
     private val _color = MutableLiveData<String>(color)
     val color: LiveData<String> = _color
+
+    fun setTitle(value: String){
+        _title.postValue(value)
+    }
+
+    fun setNotes(value: String){
+        _notes.postValue(value)
+    }
 
     fun save() {
         runBlocking {

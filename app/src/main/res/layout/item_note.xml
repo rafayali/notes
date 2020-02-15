@@ -1,72 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_item_todo"
+    android:padding="16dp">
 
-    <data>
-
-        <import type="com.rafay.notes.home.NoteUiModel" />
-
-        <import type="android.view.View"/>
-
-        <variable
-            name="note"
-            type="com.rafay.notes.home.NoteUiModel" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_parent"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/viewGroup_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/ripple_item_todo"
-        android:padding="16dp">
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/imageView_options"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/viewGroup_content"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@id/imageView_options"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textStyle="bold"
+            tools:text="Lunch with Julie" />
 
-            <TextView
-                android:id="@+id/text_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:visibility="@{note.isTitleBlank() ? View.GONE : View.VISIBLE}"
-                android:text="@{note.title}"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                tools:text="Lunch with Julie" />
-
-            <TextView
-                android:id="@+id/text_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="8"
-                android:text="@{note.description}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a condimentum mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam diam lectus, vehicula in mattis convallis, tristique eu risus. Integer iaculis elit leo, in cursus sapien pellentesque ac. Sed sed lectus at ligula bibendum auctor. Fusce quis metus at ligula rhoncus hendrerit. Duis vehicula scelerisque purus dapibus molestie. Suspendisse tincidunt sed urna nec facilisis. Aenean varius placerat velit, nec commodo est ornare a. Nam euismod orci vitae augue volutpat, et venenatis urna fringilla." />
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView_options"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_more_vert_24dp"
-            android:tint="#505050"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/viewGroup_content"
-            tools:ignore="ContentDescription" />
+            android:ellipsize="end"
+            android:maxLines="8"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a condimentum mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam diam lectus, vehicula in mattis convallis, tristique eu risus. Integer iaculis elit leo, in cursus sapien pellentesque ac. Sed sed lectus at ligula bibendum auctor. Fusce quis metus at ligula rhoncus hendrerit. Duis vehicula scelerisque purus dapibus molestie. Suspendisse tincidunt sed urna nec facilisis. Aenean varius placerat velit, nec commodo est ornare a. Nam euismod orci vitae augue volutpat, et venenatis urna fringilla." />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
-</layout>
+    <ImageView
+        android:id="@+id/imageView_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_more_vert_24dp"
+        android:tint="#505050"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewGroup_content"
+        tools:ignore="ContentDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
