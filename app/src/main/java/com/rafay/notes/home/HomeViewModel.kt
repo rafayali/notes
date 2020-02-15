@@ -16,17 +16,6 @@ import kotlinx.coroutines.flow.map
 class HomeViewModel(notesRemoteRepository: NotesRemoteRepository, notesDao: NotesDao) :
     ViewModel() {
 
-    /*@ExperimentalCoroutinesApi
-    val notes: LiveData<Result<List<NoteUiModel>>> = liveData {
-        emitSource(
-            notesRemoteRepository.all()
-                .onStart { Result.Loading }
-                .map {
-                    Result.Success(it.map { note -> note.toNoteUiModel() })
-                }.asLiveData()
-        )
-    }*/
-
     val notesLocal: LiveData<Result<List<NoteUiModel>>> = liveData {
         emitSource(
             notesDao.getNotes().map {
