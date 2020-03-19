@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.rafay.notes.R
 import com.rafay.notes.common.Result
+import com.rafay.notes.common.recyclerview.NoteSpaceItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -73,18 +74,7 @@ class HomeActivity : AppCompatActivity() {
             setPadding(8, 8, 8, 8)
             clipToPadding = false
             clipChildren = false
-            addItemDecoration(
-                object : RecyclerView.ItemDecoration() {
-                    override fun getItemOffsets(
-                        outRect: Rect,
-                        view: View,
-                        parent: RecyclerView,
-                        state: RecyclerView.State
-                    ) {
-                        outRect.set(8, 8, 8, 8)
-                    }
-                }
-            )
+            addItemDecoration(NoteSpaceItemDecoration())
             adapter = notesAdapter
         }
     }

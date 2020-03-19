@@ -25,7 +25,7 @@ class AddEditNoteViewModel(
     private val _notes = MutableLiveData<String>(notes)
     val notes: LiveData<String> = Transformations.distinctUntilChanged(_notes)
 
-    private val _color = MutableLiveData<String>(color)
+    private val _color = MutableLiveData(color)
     val color: LiveData<String> = _color
 
     fun setTitle(value: String) {
@@ -36,7 +36,10 @@ class AddEditNoteViewModel(
         _notes.postValue(value)
     }
 
-    fun save() {
+    /**
+     * Sync note changes into repository.
+     */
+    fun sync() {
         runBlocking {
             if (noteIsValid(title.value, notes.value)) {
                 saveNote()
@@ -46,12 +49,18 @@ class AddEditNoteViewModel(
         }
     }
 
+    /**
+     * Deletes [NoteEntity] from repository for given [id].
+     */
     private suspend fun deleteNote(id: Long?) {
         if (id != null) {
             notesDao.delete(id)
         }
     }
 
+    /**
+     * Saves [NoteEntity] into repository.
+     */
     private suspend fun saveNote() {
         val note = NoteEntity(
             id = id,
@@ -63,7 +72,7 @@ class AddEditNoteViewModel(
     }
 
     /**
-     * Returns true if one of the fields are not blank.
+     * Returns true if one of the required fields are not blank.
      */
     private fun noteIsValid(title: String?, notes: String?): Boolean {
         return title?.isNotBlank() == true || notes?.isNotBlank() == true

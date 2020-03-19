@@ -86,7 +86,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        viewModel.save()
+        viewModel.sync()
         super.onBackPressed()
     }
 

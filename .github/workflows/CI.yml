@@ -42,9 +42,6 @@ jobs:
             - name: Spotless
               run: ./gradlew spotlessApply
 
-            - name: Lint
-              run: ./gradlew lintDebug
-
             - name: Unit Tests
               run: ./gradlew testDebugUnitTest
 
