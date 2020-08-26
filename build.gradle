@@ -25,7 +25,7 @@ buildscript {
         timberVersion = "4.7.1"
         jUnitVersion = "4.13"
         testRunnerVersion = "1.2.0"
-        espressoCoreVersion = "3.2.0"
+        espressoCoreVersion = "3.3.0"
         recyclerViewVersion = "1.1.0"
         coreVersion = '1.2.0'
         rulesVersion = '1.2.0'
