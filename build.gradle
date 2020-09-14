@@ -27,7 +27,7 @@ buildscript {
         testRunnerVersion = "1.2.0"
         espressoCoreVersion = "3.3.0"
         recyclerViewVersion = "1.1.0"
-        coreVersion = '1.2.0'
+        coreVersion = '1.3.0'
         rulesVersion = '1.3.0'
         jUnitExtVersion = '1.1.2'
         truthExtVersion = '1.3.0'
