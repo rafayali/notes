@@ -36,12 +36,8 @@ android {
         targetCompatibility = 1.8
     }
 
-    androidExtensions {
-        experimental = true
-    }
-
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
     }
 }
 

@@ -2,6 +2,8 @@ package com.rafay.notes.create
 
 import android.os.Bundle
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
@@ -68,19 +70,19 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     private fun setupViewModelObservers() {
-        viewModel.title.observe(this, Observer {
+        viewModel.title.observe(this, {
             if (binding.editTitle.text.toString() != it) {
                 binding.editTitle.setText(it)
             }
         })
 
-        viewModel.notes.observe(this, Observer {
+        viewModel.notes.observe(this, {
             if (binding.editDescription.text.toString() != it) {
                 binding.editDescription.setText(it)
             }
         })
 
-        viewModel.color.observe(this, Observer {
+        viewModel.color.observe(this, {
             //            binding.flBackground.background = Color.parseColor("#$it").toDrawable()
         })
     }

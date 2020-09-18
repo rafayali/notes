@@ -1,18 +1,9 @@
 <resources>
-    <!-- Base Theme -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/yellow_500</item>
+        <item name="colorPrimaryVariant">@color/yellow_500</item>
+        <item name="colorSecondary">@color/dark_blue_500</item>
+        <item name="colorOnSecondary">@color/white</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
-
-    <style name="HomeTheme" parent="AppTheme">
-        <item name="android:windowActivityTransitions">true</item>
-    </style>
-
-    <style name="AddEditTheme" parent="AppTheme">
-        <item name="android:windowActivityTransitions">true</item>
-    </style>
-
 </resources>

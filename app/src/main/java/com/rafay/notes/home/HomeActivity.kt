@@ -1,13 +1,10 @@
 package com.rafay.notes.home
 
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.rafay.notes.R
 import com.rafay.notes.common.Result
@@ -70,7 +67,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding.recyclerView.apply {
             layoutManager =
-                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
             setPadding(8, 8, 8, 8)
             clipToPadding = false
             clipChildren = false
@@ -81,7 +78,7 @@ class HomeActivity : AppCompatActivity() {
 
     @ExperimentalCoroutinesApi
     private fun setupViewModelObservers() {
-        viewModel.notesLocal.observe(this, Observer {
+        viewModel.notesLocal.observe(this, {
             when (it) {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
@@ -114,5 +111,9 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    companion object {
+        private const val SPAN_COUNT = 2
     }
 }

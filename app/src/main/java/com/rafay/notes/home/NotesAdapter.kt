@@ -62,7 +62,7 @@ class NotesAdapter(
 
             binding.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
 
-            binding.clParent.background = createNoteDrawable(binding.root.context, null)
+//            binding.clParent.background = createNoteDrawable(binding.root.context, null)
         }
 
         /**
@@ -80,13 +80,13 @@ class NotesAdapter(
                 GradientDrawable().apply {
                     setStroke(
                         1.toDp(binding.root.context),
-                        ContextCompat.getColor(binding.root.context, R.color.noteShapeBorder)
+                        ContextCompat.getColor(binding.root.context, R.color.gray_400)
                     )
                     cornerRadius = 16.toDp(context).toFloat()
                     if (backgroundColor != null) {
                         setColor(Color.parseColor("#$backgroundColor"))
                     } else {
-                        setColor(ContextCompat.getColor(context, R.color.defaultNoteColor))
+                        setColor(ContextCompat.getColor(context, R.color.white))
                     }
                 },
                 null

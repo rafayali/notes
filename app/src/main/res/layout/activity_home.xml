@@ -5,7 +5,6 @@
     android:id="@+id/cl_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:fitsSystemWindows="true"
     tools:context=".home.HomeActivity">
 
@@ -27,16 +26,15 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
         app:liftOnScroll="true"
         app:liftOnScrollTargetViewId="@id/recyclerView">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:gravity="center"
             android:text="@string/home_toolbar_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             android:textStyle="bold" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -49,7 +47,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_add_24dp"
-        app:fabSize="auto" />
+        app:fabSize="auto"
+        tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_retry"
@@ -59,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
