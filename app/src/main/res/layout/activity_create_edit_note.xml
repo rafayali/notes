@@ -18,9 +18,9 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
-        android:elevation="0dp"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,36 +40,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_title"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
+            android:id="@+id/edit_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@null"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:gravity="start"
             android:hint="@string/add_edit_todo_title"
-            app:hintEnabled="true">
+            android:inputType="text"
+            android:importantForAutofill="no" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
+            android:background="@null"
+            android:id="@+id/edit_description"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
             android:layout_marginTop="8dp"
-            android:hint="@string/add_edit_todo_description">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_description"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="start" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:hint="@string/add_edit_todo_description"
+            android:inputType="textMultiLine"
+            android:importantForAutofill="no" />
 
     </LinearLayout>
 
