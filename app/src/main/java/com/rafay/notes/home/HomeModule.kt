@@ -1,7 +1,6 @@
 package com.rafay.notes.home
 
 import com.rafay.notes.db.NotesDatabase
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

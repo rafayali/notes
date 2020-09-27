@@ -4,7 +4,6 @@ import androidx.room.Room
 import com.rafay.notes.create.addEditNoteModule
 import com.rafay.notes.db.NotesDatabase
 import com.rafay.notes.home.homeModule
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.Koin
 import org.koin.dsl.module
