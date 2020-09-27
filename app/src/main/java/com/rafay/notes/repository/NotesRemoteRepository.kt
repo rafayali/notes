@@ -30,7 +30,7 @@ interface NotesRemoteRepository {
         title: String,
         description: String,
         done: Boolean,
-        backgroundHexColor: String
+        colorTag: String
     )
 
     /**

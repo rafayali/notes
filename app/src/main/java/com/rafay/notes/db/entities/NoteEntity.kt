@@ -27,6 +27,9 @@ class NoteEntity(
     @ColumnInfo(name = "archived")
     val archived: Boolean = false,
 
+    @ColumnInfo(name = "color_tag")
+    val colorTag: String?,
+
     @ColumnInfo(name = "createdAt")
     val dateCreated: OffsetDateTime = OffsetDateTime.now(),
 
@@ -40,7 +43,7 @@ inline fun NoteEntity.toNoteUiModel(): NoteUiModel {
         noteId = noteId,
         title = title,
         description = notes,
-        backgroundColorHex = "ff0000",
+        colorTag = colorTag,
         done = false
     )
 }

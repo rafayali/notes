@@ -14,7 +14,7 @@ import kotlinx.coroutines.runBlocking
 class AddEditNoteViewModel(
     title: String?,
     notes: String?,
-    color: String,
+    color: String?,
     private val id: Long?,
     private val notesDao: NotesDao
 ) : ViewModel() {
@@ -26,7 +26,7 @@ class AddEditNoteViewModel(
     val notes: LiveData<String> = Transformations.distinctUntilChanged(_notes)
 
     private val _color = MutableLiveData(color)
-    val color: LiveData<String> = _color
+    val color: LiveData<String?> = _color
 
     fun setTitle(value: String) {
         _title.postValue(value)
@@ -65,7 +65,8 @@ class AddEditNoteViewModel(
         val note = NoteEntity(
             id = id,
             title = title.value,
-            notes = notes.value
+            notes = notes.value,
+            colorTag = _color.value
         )
 
         notesDao.insert(note)
@@ -80,9 +81,5 @@ class AddEditNoteViewModel(
 
     fun setColor(color: String) {
         _color.postValue(color)
-    }
-
-    companion object {
-        const val DEFAULT_COLOR = "009688"
     }
 }

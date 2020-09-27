@@ -11,7 +11,6 @@ import com.rafay.notes.common.Result
 import com.rafay.notes.common.recyclerview.NoteSpaceItemDecoration
 import com.rafay.notes.create.AddEditNoteActivity
 import com.rafay.notes.databinding.ActivityHomeBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -23,7 +22,6 @@ class HomeActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<HomeViewModel>()
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,16 +43,15 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    @ExperimentalCoroutinesApi
     private fun setupRecyclerView() {
         val notesAdapter = NotesAdapter { id, _ ->
-            val note = (viewModel.notesLocal.value as Result.Success).data.first { it.id == id }
+            val note = (viewModel.notes.value as Result.Success).data.first { it.id == id }
 
             val bundle = bundleOf(
                 AddEditNoteActivity.KEY_LONG_ID to note.id,
                 AddEditNoteActivity.KEY_STRING_TITLE to note.title,
                 AddEditNoteActivity.KEY_STRING_DESCRIPTION to note.description,
-                AddEditNoteActivity.KEY_STRING_BG_COLOR_HEX to note.backgroundColorHex
+                AddEditNoteActivity.KEY_STRING_BG_COLOR_HEX to note.colorTag
             )
 
             startActivity(
@@ -76,9 +73,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    @ExperimentalCoroutinesApi
     private fun setupViewModelObservers() {
-        viewModel.notesLocal.observe(this, {
+        viewModel.notes.observe(this) {
             when (it) {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
@@ -110,7 +106,7 @@ class HomeActivity : AppCompatActivity() {
                     binding.recyclerView.visibility = View.GONE
                 }
             }
-        })
+        }
     }
 
     companion object {

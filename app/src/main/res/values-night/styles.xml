@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/app_purple</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/app_purple</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/app_magenta_light</item>
+        <item name="colorPrimarySurface">@color/app_magenta</item>
+        <item name="toolbarStyle">@style/Widget.AppComponents.Toolbar</item>
+    </style>
+
+    <style name="Widget.AppComponents.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.AppComponents.Toolbar</item>
+    </style>
+
+    <style name="ThemeOverlay.AppComponents.Toolbar" parent="">
+        <item name="colorPrimary">?attr/colorPrimarySurface</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+</resources>

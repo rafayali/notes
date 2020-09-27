@@ -1,22 +1,24 @@
 package com.rafay.notes.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.rafay.notes.common.Result
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.toNoteUiModel
-import com.rafay.notes.repository.NotesRemoteRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 /**
  * [ViewModel] for [HomeActivity].
  */
-class HomeViewModel(notesRemoteRepository: NotesRemoteRepository, notesDao: NotesDao) :
-    ViewModel() {
+class HomeViewModel(
+    notesDao: NotesDao
+) : ViewModel() {
 
-    val notesLocal: LiveData<Result<List<NoteUiModel>>> = liveData {
+    val notes: LiveData<Result<List<NoteUiModel>>> = liveData {
         emitSource(
             notesDao.getNotes().map {
                 Result.Success(it.map { noteEntity -> noteEntity.toNoteUiModel() })

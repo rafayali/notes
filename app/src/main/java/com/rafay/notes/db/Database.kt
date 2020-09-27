@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.NoteEntity
 
-@Database(entities = [NoteEntity::class], version = 3)
+@Database(entities = [NoteEntity::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class NotesDatabase : RoomDatabase() {
 

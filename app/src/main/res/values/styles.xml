@@ -1,9 +1,33 @@
 <resources>
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/yellow_500</item>
-        <item name="colorPrimaryVariant">@color/yellow_500</item>
-        <item name="colorSecondary">@color/dark_blue_500</item>
+        <item name="colorPrimary">@color/app_purple</item>
+        <item name="colorSecondary">@color/app_purple</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="toolbarStyle">@style/Widget.AppComponents.Toolbar</item>
+        <item name="colorPrimarySurface">@color/app_white_100</item>
     </style>
+
+    <style name="Widget.AppComponents.CardView.AddNotes.SelectColor" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/gray_700</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="Widget.AppComponents.CardView.Home.Note" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+    
+    <style name="Widget.AppComponents.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.AppComponents.Toolbar</item>
+    </style>
+
+    <style name="ThemeOverlay.AppComponents.Toolbar" parent="">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+
 </resources>
