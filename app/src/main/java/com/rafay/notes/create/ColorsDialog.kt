@@ -34,7 +34,6 @@ class ColorsDialog(private val onColorSelected: OnColorSelected) : BottomSheetDi
                 .also { colorString ->
                     onColorSelected.invoke(colorString)
                 }
-
         }
 
         binding.cardColorGreen.setOnClickListener {

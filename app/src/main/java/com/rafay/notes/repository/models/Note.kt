@@ -1,6 +1,6 @@
 package com.rafay.notes.repository.models
 
-import java.util.*
+import java.util.UUID
 
 /**
  * Model class for notes remote data.

@@ -1,13 +1,11 @@
 package com.rafay.notes.create
 
 import android.os.Bundle
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 
 class AddEditNoteActivity : AppCompatActivity() {
 
