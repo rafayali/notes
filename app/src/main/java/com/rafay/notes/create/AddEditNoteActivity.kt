@@ -1,5 +1,6 @@
 package com.rafay.notes.create
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -37,7 +38,7 @@ class AddEditNoteActivity : AppCompatActivity() {
             viewModel.setNotes(text.toString())
         }
 
-        binding.buttonSelectColor.setOnClickListener {
+        binding.cardSelectColor.setOnClickListener {
             ColorsDialog { color ->
                 viewModel.setColor(color)
             }.show(supportFragmentManager, ColorsDialog::class.java.simpleName)
@@ -58,7 +59,12 @@ class AddEditNoteActivity : AppCompatActivity() {
         })
 
         viewModel.color.observe(this, {
-            // todo set color indiator on UI
+            val color = if (it == null){
+                android.R.color.transparent
+            } else {
+                Color.parseColor("#$it")
+            }
+            binding.cardSelectColor.setCardBackgroundColor(color)
         })
     }
 

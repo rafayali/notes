@@ -29,5 +29,10 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorOnPrimary">@color/black</item>
     </style>
+
+    <style name="ShapeAppearance.AppComponents.ImageView.CreateNotes.SelectColor" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
     
 </resources>
