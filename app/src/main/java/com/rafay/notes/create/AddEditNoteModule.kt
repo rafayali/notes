@@ -16,7 +16,7 @@ val addEditNoteModule = module {
             id = id,
             title = title,
             notes = notes,
-            color = color ?: AddEditNoteViewModel.DEFAULT_COLOR,
+            color = color,
             notesDao = get<NotesDatabase>().getNotesDao()
         )
     }

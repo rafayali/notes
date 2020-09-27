@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow_500">#FFFFFF</color>
+    <color name="app_purple">#5564ff</color>
+    <color name="app_yellow">#FFEB3B</color>
+    <color name="app_magenta">#38264f</color>
+    <color name="app_magenta_light">#453759</color>
+    <color name="app_white_100">#fefefe</color>
+    <color name="yellow_500">#FFEB3B</color>
     <color name="dark_blue_500">#3F51B5</color>
-    <color name="gray_400">#405F5F5F</color>
-    <color name="noteRipple">#25000000</color>
-    <color name="noteBackgroundBlue">#2196F3</color>
-    <color name="noteBackgroundPurple">#673AB7</color>
-    <color name="noteBackgroundGreen">#4CAF50</color>
+    <color name="gray_700">#405C5C5C</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="card_green_500">#4CAF50</color>
+    <color name="card_blue_500">#2196F3</color>
+    <color name="card_orange_500">#FF5722</color>
 </resources>

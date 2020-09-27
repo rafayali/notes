@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_parent"
+    style="@style/Widget.AppComponents.CardView.Home.Note"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:strokeColor="@color/gray_400"
-    app:cardElevation="0dp"
-    app:strokeWidth="1dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/viewGroup_content"
@@ -17,12 +12,19 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingBottom="16dp">
+
+        <View
+            android:id="@+id/image_color_tag"
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
@@ -33,6 +35,8 @@
             android:id="@+id/text_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="8"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"

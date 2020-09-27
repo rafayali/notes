@@ -1,28 +1,23 @@
 package com.rafay.notes.home
 
-import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.RippleDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.rafay.notes.R
 import com.rafay.notes.databinding.ItemNoteBinding
-import com.rafay.notes.ktx.toDp
 import com.rafay.notes.repository.models.Note
+
+typealias NoteOnClickListener = (id: Long, view: View) -> Unit
 
 /**
  * RecyclerView adapter for [Note].
  */
 class NotesAdapter(
     private val onItemSelected: NoteOnClickListener
-) : ListAdapter<NoteUiModel, NotesAdapter.NoteViewHolder>(TodoDiffCallback()) {
+) : ListAdapter<NoteUiModel, NotesAdapter.NoteViewHolder>(TodoDiffCallback) {
 
     init {
         setHasStableIds(true)
@@ -60,44 +55,20 @@ class NotesAdapter(
                 binding.textTitle.visibility = View.VISIBLE
             }
 
+            if (item.colorTag != null) {
+                binding.imageColorTag.setBackgroundColor(Color.parseColor("#${item.colorTag}"))
+            } else {
+                binding.imageColorTag.setBackgroundColor(Color.TRANSPARENT)
+            }
+
             binding.root.setOnClickListener { onItemSelected.invoke(item.id, binding.root) }
-
-//            binding.clParent.background = createNoteDrawable(binding.root.context, null)
-        }
-
-        /**
-         * Creates [RippleDrawable] background for note item.
-         */
-        @Suppress("SameParameterValue")
-        private fun createNoteDrawable(context: Context, backgroundColor: String?): RippleDrawable {
-            return RippleDrawable(
-                ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.noteRipple
-                    )
-                ),
-                GradientDrawable().apply {
-                    setStroke(
-                        1.toDp(binding.root.context),
-                        ContextCompat.getColor(binding.root.context, R.color.gray_400)
-                    )
-                    cornerRadius = 16.toDp(context).toFloat()
-                    if (backgroundColor != null) {
-                        setColor(Color.parseColor("#$backgroundColor"))
-                    } else {
-                        setColor(ContextCompat.getColor(context, R.color.white))
-                    }
-                },
-                null
-            )
         }
     }
 
     /**
      * Diff utility for [NotesAdapter].
      */
-    private class TodoDiffCallback : DiffUtil.ItemCallback<NoteUiModel>() {
+    private object TodoDiffCallback : DiffUtil.ItemCallback<NoteUiModel>() {
         override fun areItemsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {
             return oldItem.id == newItem.id
         }
@@ -107,5 +78,3 @@ class NotesAdapter(
         }
     }
 }
-
-typealias NoteOnClickListener = (id: Long, view: View) -> Unit

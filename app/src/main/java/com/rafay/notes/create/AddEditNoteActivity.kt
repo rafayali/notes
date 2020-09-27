@@ -2,15 +2,12 @@ package com.rafay.notes.create
 
 import android.os.Bundle
 import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.Observer
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
-import kotlinx.android.synthetic.main.activity_create_edit_note.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 
 class AddEditNoteActivity : AppCompatActivity() {
 
@@ -30,34 +27,8 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        binding.clParent.setOnApplyWindowInsetsListener { _, insets ->
-            val lpToolbar = (binding.toolbar.layoutParams as ViewGroup.MarginLayoutParams).apply {
-                topMargin += insets.systemWindowInsetTop
-                leftMargin += insets.systemWindowInsetLeft
-                rightMargin += insets.systemWindowInsetRight
-            }
-            binding.toolbar.layoutParams = lpToolbar
-
-            // Set listener to null so insets are not re-applied
-            binding.clParent.setOnApplyWindowInsetsListener(null)
-
-            insets.consumeSystemWindowInsets()
-        }
-
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
-        }
-
-        binding.llColorPanel.image_blue_button.setOnClickListener {
-            viewModel.setColor("2196F3")
-        }
-
-        binding.llColorPanel.image_green_button.setOnClickListener {
-            viewModel.setColor("4CAF50")
-        }
-
-        binding.llColorPanel.image_purple_button.setOnClickListener {
-            viewModel.setColor("673AB7")
         }
 
         binding.editTitle.doOnTextChanged { text, _, _, _ ->
@@ -66,6 +37,12 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         binding.editDescription.doOnTextChanged { text, _, _, _ ->
             viewModel.setNotes(text.toString())
+        }
+
+        binding.buttonSelectColor.setOnClickListener {
+            ColorsDialog { color ->
+                viewModel.setColor(color)
+            }.show(supportFragmentManager, ColorsDialog::class.java.simpleName)
         }
     }
 
@@ -83,7 +60,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         })
 
         viewModel.color.observe(this, {
-            //            binding.flBackground.background = Color.parseColor("#$it").toDrawable()
+            // todo set color indiator on UI
         })
     }
 
