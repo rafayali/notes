@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_take_photo"
+        style="@style/Widget.AppComponents.TextView.CreateNotes.Option"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@drawable/ic_baseline_photo_camera_24"
+        android:text="@string/create_notes_options_take_photo" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_add_image"
+        style="@style/Widget.AppComponents.TextView.CreateNotes.Option"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@drawable/ic_baseline_image_24"
+        android:text="@string/create_notes_options_add_image" />
+
+</LinearLayout>

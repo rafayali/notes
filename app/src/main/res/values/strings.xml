@@ -8,4 +8,6 @@
     <string name="home_toolbar_title">Notes</string>
     <string name="home_no_notes">You don\'t have any notes. \nAdd some using + button.</string>
     <string name="create_select_color_title">Select Color</string>
+    <string name="create_notes_options_take_photo">Take Photo</string>
+    <string name="create_notes_options_add_image">Add Image</string>
 </resources>

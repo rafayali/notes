@@ -20,4 +20,17 @@
         <item name="colorOnPrimary">@color/white</item>
     </style>
 
+    <style name="Widget.AppComponents.ImageView.CreateNotes.More" parent="">
+       <item name="tint">@color/white_80</item>
+    </style>
+
+    <style name="Widget.AppComponents.TextView.CreateNotes.Option" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="drawableTint">@color/white_80</item>
+    </style>
+
 </resources>

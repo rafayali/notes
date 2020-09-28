@@ -43,6 +43,19 @@ class AddEditNoteActivity : AppCompatActivity() {
                 viewModel.setColor(color)
             }.show(supportFragmentManager, ColorsDialog::class.java.simpleName)
         }
+
+        binding.buttonOptions.setOnClickListener {
+            OptionsDialog { option ->
+                when (option) {
+                    OptionsDialog.Options.TakePhoto -> {
+
+                    }
+                    OptionsDialog.Options.AddImage -> {
+
+                    }
+                }
+            }.show(supportFragmentManager, OptionsDialog::class.java.simpleName)
+        }
     }
 
     private fun setupViewModelObservers() {
@@ -59,7 +72,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         })
 
         viewModel.color.observe(this, {
-            val color = if (it == null){
+            val color = if (it == null) {
                 android.R.color.transparent
             } else {
                 Color.parseColor("#$it")

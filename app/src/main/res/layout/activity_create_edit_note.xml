@@ -81,9 +81,9 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
+        app:cardBackgroundColor="@color/dark_blue_500"
         app:cardCornerRadius="56dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/dark_blue_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_divider"
@@ -99,13 +99,14 @@
         android:text="Edited 1:23 PM"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
         app:layout_constraintBottom_toBottomOf="@+id/fl_background"
-        app:layout_constraintEnd_toStartOf="@+id/button_more"
+        app:layout_constraintEnd_toStartOf="@+id/button_options"
         app:layout_constraintStart_toEndOf="@id/card_select_color"
         app:layout_constraintTop_toBottomOf="@+id/view_divider"
         tools:text="Edited 1:23 PM" />
 
     <ImageView
-        android:id="@+id/button_more"
+        android:id="@+id/button_options"
+        style="@style/Widget.AppComponents.ImageView.CreateNotes.More"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="16dp"
@@ -113,6 +114,7 @@
         android:src="@drawable/ic_more_vert_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_divider" />
+        app:layout_constraintTop_toBottomOf="@+id/view_divider"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
