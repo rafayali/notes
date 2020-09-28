@@ -7,6 +7,7 @@ import androidx.core.widget.doOnTextChanged
 import com.rafay.notes.databinding.ActivityCreateEditNoteBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 
 class AddEditNoteActivity : AppCompatActivity() {
 
@@ -45,16 +46,27 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
 
         binding.buttonOptions.setOnClickListener {
-            OptionsDialog { option ->
+            OptionsDialog().show(supportFragmentManager, OptionsDialog::class.java.simpleName)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        supportFragmentManager.setFragmentResultListener(
+            OptionsDialog.KEY_RESULT,
+            this
+        ) { _, bundle ->
+            (bundle.getSerializable(OptionsDialog.KEY_RESULT_SERIALIZABLE_OPTION) as OptionsDialog.Options).also { option ->
                 when (option) {
                     OptionsDialog.Options.TakePhoto -> {
-
+                        Timber.d("TakePhoto")
                     }
                     OptionsDialog.Options.AddImage -> {
-
+                        Timber.d("AddImage")
                     }
                 }
-            }.show(supportFragmentManager, OptionsDialog::class.java.simpleName)
+            }
         }
     }
 
