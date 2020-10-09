@@ -1,7 +1,7 @@
 package com.rafay.notes
 
 import androidx.room.Room
-import com.rafay.notes.create.addEditNoteModule
+import com.rafay.notes.create.createNoteModule
 import com.rafay.notes.db.NotesDatabase
 import com.rafay.notes.home.homeModule
 import org.koin.android.ext.koin.androidContext
@@ -27,5 +27,5 @@ val appModules = module {
 val modules = listOf(
     appModules,
     homeModule,
-    addEditNoteModule
+    createNoteModule
 )
