@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimarySurface"
-    android:fitsSystemWindows="true"
-    tools:context=".home.HomeActivity">
+    android:fitsSystemWindows="true">
 
     <ProgressBar
         android:id="@+id/progressBar"

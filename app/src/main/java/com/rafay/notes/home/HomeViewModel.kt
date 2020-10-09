@@ -10,7 +10,7 @@ import com.rafay.notes.db.entities.toNoteUiModel
 import kotlinx.coroutines.flow.map
 
 /**
- * [ViewModel] for [HomeActivity].
+ * [ViewModel] for [HomeFragment].
  */
 class HomeViewModel(
     notesDao: NotesDao

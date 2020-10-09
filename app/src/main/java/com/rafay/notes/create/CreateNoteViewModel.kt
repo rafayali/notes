@@ -9,9 +9,9 @@ import com.rafay.notes.db.entities.NoteEntity
 import kotlinx.coroutines.runBlocking
 
 /**
- * ViewModel for [AddEditNoteActivity].
+ * ViewModel for [CreateNoteFragment].
  */
-class AddEditNoteViewModel(
+class CreateNoteViewModel(
     title: String?,
     notes: String?,
     color: String?,

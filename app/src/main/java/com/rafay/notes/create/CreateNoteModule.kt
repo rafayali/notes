@@ -5,14 +5,14 @@ import com.rafay.notes.db.NotesDatabase
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val addEditNoteModule = module {
+val createNoteModule = module {
     viewModel { (bundle: Bundle?) ->
-        val id = bundle?.getLong(AddEditNoteActivity.KEY_LONG_ID)
-        val title = bundle?.getString(AddEditNoteActivity.KEY_STRING_TITLE)
-        val notes = bundle?.getString(AddEditNoteActivity.KEY_STRING_DESCRIPTION)
-        val color = bundle?.getString(AddEditNoteActivity.KEY_STRING_BG_COLOR_HEX)
+        val id = bundle?.getLong(CreateNoteFragment.KEY_LONG_ID)
+        val title = bundle?.getString(CreateNoteFragment.KEY_STRING_TITLE)
+        val notes = bundle?.getString(CreateNoteFragment.KEY_STRING_DESCRIPTION)
+        val color = bundle?.getString(CreateNoteFragment.KEY_STRING_BG_COLOR_HEX)
 
-        AddEditNoteViewModel(
+        CreateNoteViewModel(
             id = id,
             title = title,
             notes = notes,
