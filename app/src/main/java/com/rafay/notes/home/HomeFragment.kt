@@ -10,7 +10,6 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.transition.Hold
-import com.google.android.material.transition.MaterialElevationScale
 import com.rafay.notes.R
 import com.rafay.notes.common.Result
 import com.rafay.notes.common.recyclerview.NoteSpaceItemDecoration
