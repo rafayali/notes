@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.transition.Hold
+import com.google.android.material.transition.MaterialElevationScale
 import com.rafay.notes.R
 import com.rafay.notes.common.Result
 import com.rafay.notes.common.recyclerview.NoteSpaceItemDecoration
@@ -20,6 +23,12 @@ class HomeFragment : Fragment() {
     private lateinit var homeBinding: FragmentHomeBinding
 
     private val viewModel by viewModel<HomeViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        exitTransition = Hold()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,7 +82,13 @@ class HomeFragment : Fragment() {
 
     private fun initView() {
         homeBinding.fab.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_createNoteFragment)
+            val extras = FragmentNavigatorExtras(requireNotNull(it) to it.transitionName)
+            findNavController().navigate(
+                R.id.action_homeFragment_to_createNoteFragment,
+                null,
+                null,
+                extras
+            )
         }
 
         setupRecyclerView()
