@@ -24,8 +24,6 @@ class CreateNoteFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        val transition = requireArguments().getSerializable(KEY_SERIALIZABLE_TRANSITION)
-
         sharedElementEnterTransition = MaterialContainerTransform()
     }
 
@@ -96,6 +94,10 @@ class CreateNoteFragment : Fragment() {
     }
 
     private fun initView() {
+        requireArguments().getString(KEY_STRING_TRANSITION_NAME)?.also {
+            binding.root.transitionName = it
+        }
+
         binding.toolbar.setNavigationOnClickListener {
             viewModel.sync()
             findNavController().navigateUp()
@@ -126,11 +128,6 @@ class CreateNoteFragment : Fragment() {
         const val KEY_STRING_DESCRIPTION = "description"
         const val KEY_STRING_BG_COLOR_HEX = "bgColor"
 
-        const val KEY_SERIALIZABLE_TRANSITION = "transitionName"
-    }
-
-    enum class Transition {
-        CreateNote,
-        OpenNote
+        const val KEY_STRING_TRANSITION_NAME = "transitionName"
     }
 }
