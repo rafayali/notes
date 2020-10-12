@@ -22,7 +22,7 @@ buildscript {
         materialVersion = "1.2.1"
         threetenabpVersion = '1.2.4'
         timberVersion = "4.7.1"
-        jUnitVersion = "4.13"
+        jUnitVersion = "4.13.1"
         testRunnerVersion = "1.2.0"
         espressoCoreVersion = "3.3.0"
         recyclerViewVersion = "1.1.0"
