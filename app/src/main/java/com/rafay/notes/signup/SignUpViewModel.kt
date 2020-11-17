@@ -5,7 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.rafay.notes.api.Api
 import com.rafay.notes.api.RegisterRequest
 import com.rafay.notes.util.CoroutineDispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -30,7 +35,6 @@ class SignUpViewModel(
                     api.register(RegisterRequest(firstName, lastName, dob, email, password))
 
                 if (response.data != null) {
-
                 }
             }
         }

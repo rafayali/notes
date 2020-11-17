@@ -46,7 +46,7 @@ class SharedPreferencesAuthStore(private val preferences: SharedPreferences) : A
             return LocalProfile(firstName = firstName, lastName = lastName, email = email, dob = dob)
         }
         set(value) {
-            if (value != null){
+            if (value != null) {
                 preferences.edit {
                     putString(KEY_STRING_FIRST_NAME, value.firstName)
                     putString(KEY_STRING_LAST_NAME, value.lastName)

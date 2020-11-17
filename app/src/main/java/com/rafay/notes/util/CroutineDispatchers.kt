@@ -3,7 +3,7 @@ package com.rafay.notes.util
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-interface CoroutineDispatchers{
+interface CoroutineDispatchers {
 
     fun io(): CoroutineDispatcher
 
@@ -12,7 +12,7 @@ interface CoroutineDispatchers{
     fun default(): CoroutineDispatcher
 }
 
-class DefaultCoroutineDispatchers(): CoroutineDispatchers{
+class DefaultCoroutineDispatchers() : CoroutineDispatchers {
     override fun io() = Dispatchers.IO
 
     override fun main() = Dispatchers.Main
@@ -20,5 +20,4 @@ class DefaultCoroutineDispatchers(): CoroutineDispatchers{
     override fun default(): CoroutineDispatcher {
         TODO("Not yet implemented")
     }
-
 }

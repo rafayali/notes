@@ -8,6 +8,7 @@ import com.rafay.notes.api.toLocalProfile
 import com.rafay.notes.domain.AuthStore
 import com.rafay.notes.domain.AuthTokenStore
 import com.rafay.notes.util.CoroutineDispatchers
+import java.lang.Exception
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -16,7 +17,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import java.lang.Exception
 
 /**
  * ViewModel for [LoginFragment]

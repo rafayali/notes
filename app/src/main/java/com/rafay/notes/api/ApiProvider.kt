@@ -8,7 +8,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
-import java.net.HttpURLConnection
 
 /**
  * Provides api service class instances using [Retrofit] and [OkHttpClient].
@@ -23,7 +22,7 @@ class ApiProvider(private val tokenStore: AuthTokenStore) {
     private val okHttpClient = OkHttpClient.Builder()
         .authenticator(Authenticator.JAVA_NET_AUTHENTICATOR)
         .addInterceptor {
-            val request = if (it.request().headers[HEADER_AUTHORIZATION] != null){
+            val request = if (it.request().headers[HEADER_AUTHORIZATION] != null) {
                 it.call().request().newBuilder()
                     .removeHeader(HEADER_AUTHORIZATION)
                     .addHeader(HEADER_AUTHORIZATION, requireNotNull(tokenStore.token))
