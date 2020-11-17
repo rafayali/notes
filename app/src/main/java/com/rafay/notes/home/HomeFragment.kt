@@ -80,12 +80,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun initView() {
-        homeBinding.fab.setOnClickListener {
-            val extras = FragmentNavigatorExtras(it to it.transitionName)
+        homeBinding.fab.setOnClickListener { view ->
+            val extras = FragmentNavigatorExtras(view to view.transitionName)
             findNavController().navigate(
                 R.id.action_homeFragment_to_createNoteFragment,
                 bundleOf(
-                    CreateNoteFragment.KEY_STRING_TRANSITION_NAME to it.transitionName
+                    CreateNoteFragment.KEY_STRING_TRANSITION_NAME to view.transitionName
                 ),
                 null,
                 extras

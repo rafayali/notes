@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -17,4 +17,19 @@
         android:id="@+id/createNoteFragment"
         android:name="com.rafay.notes.create.CreateNoteFragment"
         android:label="CreateNoteFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.rafay.notes.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.rafay.notes.signup.SignUpFragment"
+        android:label="SignUpFragment" />
 </navigation>

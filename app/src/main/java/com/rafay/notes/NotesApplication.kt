@@ -12,15 +12,15 @@ class NotesApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+
         AndroidThreeTen.init(this)
 
         startKoin {
             androidContext(applicationContext)
             modules(modules)
-        }
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
         }
     }
 }

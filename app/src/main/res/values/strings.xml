@@ -10,4 +10,15 @@
     <string name="create_select_color_title">Select Color</string>
     <string name="create_notes_options_take_photo">Take Photo</string>
     <string name="create_notes_options_add_image">Add Image</string>
+    <string name="logo_content_description">Notes Logo</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_login_button_text">Login</string>
+    <string name="login_sign_up_button_text">SignUp</string>
+    <string name="sign_up_button_text">Sign Up</string>
+    <string name="sign_up_password_hint">Password</string>
+    <string name="sign_up_email_hint">Email</string>
+    <string name="sign_up_date_of_birth_hint">Date of birth</string>
+    <string name="sign_up_last_name_hint">Last Name</string>
+    <string name="sign_up_first_name_hint">First Name</string>
 </resources>

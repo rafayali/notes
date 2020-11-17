@@ -20,6 +20,22 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions "env"
+
+    productFlavors {
+        local {
+            buildConfigField "String", "API_BASE_URL", "\"${BASE_API_URL_LOCAL}\""
+        }
+
+        dev {
+            buildConfigField "String", "API_BASE_URL", "\"${BASE_API_URL_DEV}\""
+        }
+
+        prod {
+            buildConfigField "String", "API_BASE_URL", "\"${BASE_API_URL_PROD}\""
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -32,6 +48,7 @@ android {
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
@@ -50,6 +67,8 @@ dependencies {
     implementation "androidx.transition:transition:$rootProject.transitionsVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
@@ -100,9 +119,16 @@ dependencies {
 
     implementation 'com.google.guava:guava:' + rootProject.guavaVersion
 
-    implementation 'com.github.bumptech.glide:glide:' + rootProject.glideVersion
-    kapt 'com.github.bumptech.glide:compiler:' + rootProject.glideVersion
+    implementation 'io.coil-kt:coil:' + rootProject.coilVersion
 
     implementation 'androidx.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
     implementation 'androidx.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
+
+    implementation 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion
+    implementation 'com.squareup.okhttp3:okhttp:' + rootProject.okhttpVersion
+    implementation 'com.squareup.okhttp3:logging-interceptor:' + rootProject.okhttpVersion
+    implementation 'com.squareup.retrofit2:converter-moshi:' + rootProject.retrofitVersion
+
+    implementation 'com.squareup.moshi:moshi:' + rootProject.moshiVersion
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:' + rootProject.moshiVersion
 }

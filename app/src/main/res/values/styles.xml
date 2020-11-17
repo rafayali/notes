@@ -30,10 +30,7 @@
         <item name="colorOnPrimary">@color/black</item>
     </style>
 
-    <style name="ShapeAppearance.AppComponents.ImageView.CreateNotes.SelectColor" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerSize">50%</item>
-        <item name="cornerFamily">rounded</item>
-    </style>
+
 
     <style name="Widget.AppComponents.ImageView.CreateNotes.More" parent=""/>
 
