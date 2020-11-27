@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialSharedAxis
 import com.rafay.notes.R
 import com.rafay.notes.databinding.FragmentLoginBinding
+import com.rafay.notes.ktx.ErrorMessage
 import kotlinx.coroutines.flow.collect
 import org.koin.android.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class LoginFragment : Fragment() {
 
@@ -32,7 +32,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -49,7 +49,7 @@ class LoginFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.signInState.collect { enabled ->
+            viewModel.state.collect { enabled ->
                 binding.buttonLogin.isEnabled = !enabled
                 binding.buttonRegister.isEnabled = !enabled
                 binding.editEmail.isEnabled = !enabled
@@ -58,17 +58,16 @@ class LoginFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.message.collect {
+            viewModel.error.collect {
                 when (it) {
-                    LoginViewModel.Message.BadRequest -> {
-                        Timber.d("BadRequest")
+                    ErrorMessage.BadRequest -> {
                         Toast.makeText(
                             requireContext(),
                             "Invalid email and password",
                             Toast.LENGTH_LONG
                         ).show()
                     }
-                    LoginViewModel.Message.GenericError -> {
+                    ErrorMessage.GenericError -> {
                         Toast.makeText(
                             requireContext(),
                             "Unable to login, please try again later",

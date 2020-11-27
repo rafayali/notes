@@ -26,6 +26,8 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initNavigation()
+
         exitTransition = Hold()
     }
 
@@ -33,7 +35,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
         initView()
@@ -119,6 +121,9 @@ class HomeFragment : Fragment() {
             addItemDecoration(NoteSpaceItemDecoration())
             adapter = notesAdapter
         }
+    }
+
+    private fun initNavigation() {
     }
 
     companion object {

@@ -12,12 +12,11 @@ interface CoroutineDispatchers {
     fun default(): CoroutineDispatcher
 }
 
-class DefaultCoroutineDispatchers() : CoroutineDispatchers {
+class DefaultCoroutineDispatchers : CoroutineDispatchers {
+
     override fun io() = Dispatchers.IO
 
     override fun main() = Dispatchers.Main
 
-    override fun default(): CoroutineDispatcher {
-        TODO("Not yet implemented")
-    }
+    override fun default() = Dispatchers.Default
 }
