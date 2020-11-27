@@ -1,7 +1,7 @@
 package com.rafay.notes.ktx
 
-import java.net.HttpURLConnection
 import retrofit2.HttpException
+import java.net.HttpURLConnection
 
 fun <T> Result<T>.toError(): ErrorMessage? {
     return when (val ex = exceptionOrNull()) {

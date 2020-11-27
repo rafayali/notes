@@ -90,7 +90,8 @@ class CreateNoteFragment : Fragment() {
                     viewModel.sync()
                     findNavController().popBackStack()
                 }
-            })
+            }
+        )
     }
 
     private fun initView() {

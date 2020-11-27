@@ -29,7 +29,8 @@ class OptionsDialog : BottomSheetDialogFragment() {
 
         binding.textTakePhoto.setOnClickListener {
             setFragmentResult(
-                KEY_RESULT, bundleOf(
+                KEY_RESULT,
+                bundleOf(
                     KEY_RESULT_SERIALIZABLE_OPTION to Options.TakePhoto
                 )
             )
@@ -38,7 +39,8 @@ class OptionsDialog : BottomSheetDialogFragment() {
 
         binding.textAddImage.setOnClickListener {
             setFragmentResult(
-                KEY_RESULT, bundleOf(
+                KEY_RESULT,
+                bundleOf(
                     KEY_RESULT_SERIALIZABLE_OPTION to Options.AddImage
                 )
             )
