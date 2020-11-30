@@ -18,7 +18,7 @@ buildscript {
         lifecycleVersion = "2.3.0-beta01"
         coreKtxVersion = "1.3.2"
         koinVersion = '2.2.1'
-        coroutinesVersion = "1.4.2"
+        coroutinesVersion = "1.4.2-native-mt"
         materialVersion = "1.3.0-alpha04"
         threetenabpVersion = '1.2.4'
         timberVersion = "4.7.1"
