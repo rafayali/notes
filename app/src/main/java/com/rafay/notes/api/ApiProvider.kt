@@ -2,12 +2,12 @@ package com.rafay.notes.api
 
 import com.rafay.notes.BuildConfig
 import com.rafay.notes.domain.AuthTokenStore
-import okhttp3.Authenticator
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
+import java.time.Duration
 
 /**
  * Provides api service class instances using [Retrofit] and [OkHttpClient].
@@ -20,7 +20,10 @@ class ApiProvider(private val tokenStore: AuthTokenStore) {
         }
 
     private val okHttpClient = OkHttpClient.Builder()
-        .authenticator(Authenticator.JAVA_NET_AUTHENTICATOR)
+//        .authenticator(Authenticator.JAVA_NET_AUTHENTICATOR)
+        .connectTimeout(Duration.ofSeconds(20))
+        .readTimeout(Duration.ofSeconds(20))
+        .writeTimeout(Duration.ofSeconds(20))
         .addInterceptor {
             val request = if (it.request().headers[HEADER_AUTHORIZATION] != null) {
                 it.call().request().newBuilder()

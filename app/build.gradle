@@ -18,6 +18,17 @@ android {
         versionCode rootProject.versionCode
         versionName rootProject.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "fileprovider_authority", "${applicationId}.fileprovider"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
     }
 
     flavorDimensions "env"
@@ -88,9 +99,6 @@ dependencies {
 
     // Logging
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
-
-    // Three Ten Backport Android
-    implementation "com.jakewharton.threetenabp:threetenabp:$rootProject.threetenabpVersion"
 
     // Room
     implementation 'androidx.room:room-runtime:' + rootProject.roomVersion

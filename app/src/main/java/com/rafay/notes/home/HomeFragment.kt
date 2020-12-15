@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -15,6 +16,7 @@ import com.rafay.notes.common.Result
 import com.rafay.notes.common.recyclerview.NoteSpaceItemDecoration
 import com.rafay.notes.create.CreateNoteFragment
 import com.rafay.notes.databinding.FragmentHomeBinding
+import kotlinx.coroutines.flow.collect
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -25,8 +27,6 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        initNavigation()
 
         exitTransition = Hold()
     }
@@ -46,36 +46,38 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.notes.observe(viewLifecycleOwner) {
-            when (it) {
-                is Result.Success -> {
-                    homeBinding.progressBar.visibility = View.GONE
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.notes.collect {
+                when (it) {
+                    is Result.Success -> {
+                        homeBinding.progressBar.visibility = View.GONE
 
-                    if (it.data.isEmpty()) {
-                        homeBinding.recyclerView.visibility = View.GONE
+                        if (it.data.isEmpty()) {
+                            homeBinding.recyclerView.visibility = View.GONE
 
-                        homeBinding.clRetry.visibility = View.VISIBLE
-                        homeBinding.textMessage.visibility = View.VISIBLE
-                        homeBinding.textMessage.text = getString(R.string.home_no_notes)
-                        homeBinding.buttonRetry.visibility = View.GONE
-                    } else {
-                        homeBinding.recyclerView.visibility = View.VISIBLE
-                        homeBinding.clRetry.visibility = View.GONE
+                            homeBinding.clRetry.visibility = View.VISIBLE
+                            homeBinding.textMessage.visibility = View.VISIBLE
+                            homeBinding.textMessage.text = getString(R.string.home_no_notes)
+                            homeBinding.buttonRetry.visibility = View.GONE
+                        } else {
+                            homeBinding.recyclerView.visibility = View.VISIBLE
+                            homeBinding.clRetry.visibility = View.GONE
+                        }
+
+                        (homeBinding.recyclerView.adapter as NotesAdapter).submitList(it.data)
                     }
-
-                    (homeBinding.recyclerView.adapter as NotesAdapter).submitList(it.data)
-                }
-                is Result.Loading -> {
-                    homeBinding.progressBar.visibility = View.VISIBLE
-                    homeBinding.clRetry.visibility = View.GONE
-                    homeBinding.recyclerView.visibility = View.GONE
-                }
-                is Result.Error -> {
-                    homeBinding.progressBar.visibility = View.GONE
-                    homeBinding.clRetry.visibility = View.VISIBLE
-                    homeBinding.textMessage.text = getString(R.string.home_retry_text)
-                    homeBinding.buttonRetry.visibility = View.VISIBLE
-                    homeBinding.recyclerView.visibility = View.GONE
+                    is Result.Loading -> {
+                        homeBinding.progressBar.visibility = View.VISIBLE
+                        homeBinding.clRetry.visibility = View.GONE
+                        homeBinding.recyclerView.visibility = View.GONE
+                    }
+                    is Result.Error -> {
+                        homeBinding.progressBar.visibility = View.GONE
+                        homeBinding.clRetry.visibility = View.VISIBLE
+                        homeBinding.textMessage.text = getString(R.string.home_retry_text)
+                        homeBinding.buttonRetry.visibility = View.VISIBLE
+                        homeBinding.recyclerView.visibility = View.GONE
+                    }
                 }
             }
         }
@@ -121,9 +123,6 @@ class HomeFragment : Fragment() {
             addItemDecoration(NoteSpaceItemDecoration())
             adapter = notesAdapter
         }
-    }
-
-    private fun initNavigation() {
     }
 
     companion object {

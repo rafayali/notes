@@ -1,7 +1,5 @@
 package com.rafay.notes.home
 
-import com.rafay.notes.repository.models.Note
-
 /**
  * Ui model class for [Note].
  */

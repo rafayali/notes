@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rafay.notes.databinding.ItemNoteBinding
-import com.rafay.notes.repository.models.Note
 
 typealias NoteOnClickListener = (id: Long, view: View) -> Unit
 

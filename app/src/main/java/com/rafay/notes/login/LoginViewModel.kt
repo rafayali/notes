@@ -11,12 +11,15 @@ import com.rafay.notes.ktx.ErrorMessage
 import com.rafay.notes.ktx.toError
 import com.rafay.notes.util.CoroutineDispatchers
 import com.rafay.notes.util.isEmail
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 /**
@@ -29,8 +32,8 @@ class LoginViewModel(
     private val dispatchers: CoroutineDispatchers
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(false)
-    val state: StateFlow<Boolean> = _state.asStateFlow()
+    private val _loading = MutableStateFlow(false)
+    val loading: StateFlow<Boolean> = _loading.asStateFlow()
 
     private val _error = MutableSharedFlow<ErrorMessage>()
     val error: SharedFlow<ErrorMessage> = _error.asSharedFlow()
@@ -45,7 +48,7 @@ class LoginViewModel(
         if (!email.isEmail()) return
 
         viewModelScope.launch(dispatchers.io()) {
-            _state.emit(true)
+            _loading.emit(true)
 
             val result = runCatching {
                 requireNotNull(api.login(LoginRequest(email, password)).data).also {
@@ -58,7 +61,7 @@ class LoginViewModel(
 
             result.toError()?.let { _error.emit(it) }
 
-            _state.emit(false)
+            _loading.emit(false)
         }
     }
 

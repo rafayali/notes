@@ -7,7 +7,8 @@ import org.koin.dsl.module
 val homeModule = module {
     viewModel {
         HomeViewModel(
-            notesDao = get<NotesDatabase>().getNotesDao()
+            notesDao = get<NotesDatabase>().getNotesDao(),
+            dispatcher = get()
         )
     }
 }

@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialContainerTransform
 import com.rafay.notes.databinding.FragmentCreateNoteBinding
+import kotlinx.coroutines.flow.collect
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
@@ -31,7 +33,7 @@ class CreateNoteFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCreateNoteBinding.inflate(inflater, container, false)
 
         initView()
@@ -42,25 +44,23 @@ class CreateNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.title.observe(viewLifecycleOwner) {
-            if (binding.editTitle.text.toString() != it) {
-                binding.editTitle.setText(it)
-            }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.title.collect { binding.editTitle.setText(it ?: "") }
         }
 
-        viewModel.notes.observe(viewLifecycleOwner) {
-            if (binding.editDescription.text.toString() != it) {
-                binding.editDescription.setText(it)
-            }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.notes.collect { binding.editDescription.setText(it ?: "") }
         }
 
-        viewModel.color.observe(viewLifecycleOwner) {
-            val color = if (it == null) {
-                android.R.color.transparent
-            } else {
-                Color.parseColor("#$it")
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.color.collect {
+                val color = if (it == null) {
+                    android.R.color.transparent
+                } else {
+                    Color.parseColor("#$it")
+                }
+                binding.cardSelectColor.setCardBackgroundColor(color)
             }
-            binding.cardSelectColor.setCardBackgroundColor(color)
         }
     }
 

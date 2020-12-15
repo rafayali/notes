@@ -51,7 +51,7 @@ class SharedPreferencesAuthStore(private val preferences: SharedPreferences) : A
                     putString(KEY_STRING_FIRST_NAME, value.firstName)
                     putString(KEY_STRING_LAST_NAME, value.lastName)
                     putString(KEY_STRING_EMAIL, value.email)
-                    putString(KEY_STRING_EMAIL, value.dob)
+                    putString(KEY_STRING_DOB, value.dob)
                 }
             }
         }

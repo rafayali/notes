@@ -2,10 +2,13 @@ package com.rafay.notes.create
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.NoteEntity
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -19,21 +22,21 @@ class CreateNoteViewModel(
     private val notesDao: NotesDao
 ) : ViewModel() {
 
-    private val _title = MutableLiveData<String>(title)
-    val title: LiveData<String> = Transformations.distinctUntilChanged(_title)
+    private val _title = MutableStateFlow(title)
+    val title: StateFlow<String?> = _title.asStateFlow()
 
-    private val _notes = MutableLiveData<String>(notes)
-    val notes: LiveData<String> = Transformations.distinctUntilChanged(_notes)
+    private val _notes = MutableStateFlow(notes)
+    val notes: StateFlow<String?> = _notes.asStateFlow()
 
-    private val _color = MutableLiveData(color)
-    val color: LiveData<String?> = _color
+    private val _color = MutableStateFlow(color)
+    val color: StateFlow<String?> = _color.asStateFlow()
 
     fun setTitle(value: String) {
-        _title.postValue(value)
+        _title.value = value
     }
 
     fun setNotes(value: String) {
-        _notes.postValue(value)
+        _notes.value = value
     }
 
     /**
@@ -80,6 +83,6 @@ class CreateNoteViewModel(
     }
 
     fun setColor(color: String) {
-        _color.postValue(color)
+        _color.value = color
     }
 }

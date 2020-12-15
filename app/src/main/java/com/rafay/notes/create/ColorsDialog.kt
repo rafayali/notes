@@ -21,7 +21,7 @@ class ColorsDialog(private val onColorSelected: OnColorSelected) : BottomSheetDi
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentColorsDialogBinding.inflate(inflater, container, false)
         return binding.root
     }

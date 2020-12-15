@@ -9,9 +9,9 @@ buildscript {
         maxSdkVersion = 30
         buildToolsVersion = "30.0.2"
 
-        androidGradleVersion = '4.1.1'
+        androidGradleVersion = '4.2.0-beta02'
         googleServicesVersion = "4.3.3"
-        kotlinVersion = '1.4.20'
+        kotlinVersion = '1.4.21'
         appcompatVersion = '1.2.0'
         constraintLayoutVersion = "2.0.4"
         transitionsVersion = "1.3.1"
@@ -20,7 +20,6 @@ buildscript {
         koinVersion = '2.2.1'
         coroutinesVersion = "1.4.2"
         materialVersion = "1.3.0-alpha04"
-        threetenabpVersion = '1.2.4'
         timberVersion = "4.7.1"
         jUnitVersion = "4.13.1"
         testRunnerVersion = "1.2.0"
@@ -72,7 +71,7 @@ subprojects {
     spotless {
         kotlin {
             target "**/*.kt"
-            ktlint("0.39.0")
+            ktlint("0.40.0")
         }
     }
 
@@ -84,6 +83,7 @@ subprojects {
     // `spotlessCheck` is already scheduled to run, so we can still build and launch from the IDE
     // while the code is "dirty".
     tasks.whenTaskAdded {
+        //noinspection GrEqualsBetweenInconvertibleTypes
         if (name == 'preBuild') {
             mustRunAfter 'spotlessCheck'
         }

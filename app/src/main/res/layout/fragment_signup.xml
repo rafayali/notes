@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:transitionGroup="true">
@@ -47,13 +48,31 @@
                 android:orientation="vertical"
                 android:padding="32dp">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageView"
+                <FrameLayout
+                    android:id="@+id/frame_dp"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@color/gray_700"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.AppComponents.ImageView.ProfileImage" />
+                    android:layout_gravity="center_horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.AppComponents.ImageView.ProfileImage"
+                        app:srcCompat="@color/gray_700" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image_take_photo"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="bottom|end"
+                        android:background="@color/white"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.AppComponents.ImageView.ProfileImage"
+                        app:srcCompat="@drawable/ic_inset_camera_24dp"
+                        tools:ignore="ContentDescription" />
+
+                </FrameLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_input_first_name"
@@ -62,30 +81,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:hint="@string/sign_up_first_name_hint"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@null"
                     app:hintEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_first_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="textPersonName" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_last_name"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:id="@+id/text_input_last_name"
                     android:hint="@string/sign_up_last_name_hint"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@null"
                     app:hintEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_last_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="textPersonName" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,45 +116,54 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="?attr/selectableItemBackground"
                     android:hint="@string/sign_up_date_of_birth_hint"
                     app:endIconDrawable="@drawable/ic_baseline_date_range_24"
                     app:endIconMode="custom"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@null"
                     app:hintEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_dob"
+                        android:textIsSelectable="false"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:longClickable="false"
+                        android:focusableInTouchMode="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:inputType="none" />
+                        android:enabled="true"
+                        android:inputType="date" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput_email"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:hint="@string/sign_up_email_hint"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@null"
                     app:hintEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none" />
+                        android:inputType="textEmailAddress" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput_password"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:hint="@string/sign_up_password_hint"
                     app:endIconMode="password_toggle"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@null"
                     app:hintEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText

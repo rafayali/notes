@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.google.android.material.transition.MaterialSharedAxis
 import com.rafay.notes.R
 import com.rafay.notes.databinding.FragmentLoginBinding
 import com.rafay.notes.ktx.ErrorMessage
+import com.rafay.notes.ktx.longToast
 import kotlinx.coroutines.flow.collect
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -48,8 +49,8 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.state.collect { enabled ->
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.loading.collect { enabled ->
                 binding.buttonLogin.isEnabled = !enabled
                 binding.buttonRegister.isEnabled = !enabled
                 binding.editEmail.isEnabled = !enabled
@@ -60,29 +61,25 @@ class LoginFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.error.collect {
                 when (it) {
-                    ErrorMessage.BadRequest -> {
-                        Toast.makeText(
-                            requireContext(),
-                            "Invalid email and password",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                    ErrorMessage.GenericError -> {
-                        Toast.makeText(
-                            requireContext(),
-                            "Unable to login, please try again later",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    ErrorMessage.BadRequest -> longToast("Invalid email and password")
+                    ErrorMessage.GenericError -> longToast("Unable to login, please try again later")
                 }
             }
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.navigation.collect {
                 when (it) {
                     LoginViewModel.Navigation.Login -> {
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        findNavController().navigate(
+                            R.id.homeFragment,
+                            null,
+                            navOptions {
+                                popUpTo(findNavController().currentDestination!!.id) {
+                                    inclusive = true
+                                }
+                            }
+                        )
                     }
                 }
             }

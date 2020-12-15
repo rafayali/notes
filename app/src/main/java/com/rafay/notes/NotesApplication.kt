@@ -1,11 +1,15 @@
 package com.rafay.notes
 
 import android.app.Application
-import com.jakewharton.threetenabp.AndroidThreeTen
+import androidx.work.Configuration
+import androidx.work.WorkManager
+import com.rafay.notes.work.KoinWorkerFactory
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.component.KoinApiExtension
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
+@KoinApiExtension
 @Suppress("unused")
 class NotesApplication : Application() {
 
@@ -16,7 +20,10 @@ class NotesApplication : Application() {
             Timber.plant(Timber.DebugTree())
         }
 
-        AndroidThreeTen.init(this)
+        WorkManager.initialize(
+            applicationContext,
+            Configuration.Builder().setWorkerFactory(KoinWorkerFactory()).build()
+        )
 
         startKoin {
             androidContext(applicationContext)

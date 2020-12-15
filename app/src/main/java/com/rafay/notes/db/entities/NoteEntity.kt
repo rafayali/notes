@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.rafay.notes.home.NoteUiModel
-import org.threeten.bp.OffsetDateTime
+import java.time.OffsetDateTime
 
 @Entity(tableName = "notes")
 class NoteEntity(
