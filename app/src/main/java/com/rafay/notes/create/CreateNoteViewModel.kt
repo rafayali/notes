@@ -1,9 +1,6 @@
 package com.rafay.notes.create
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.NoteEntity
 import kotlinx.coroutines.flow.MutableStateFlow

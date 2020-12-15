@@ -6,7 +6,6 @@ import com.rafay.notes.common.Result
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.toNoteUiModel
 import com.rafay.notes.util.CoroutineDispatchers
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

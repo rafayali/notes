@@ -53,7 +53,6 @@ class SignUpFragment : Fragment() {
                         "${BuildConfig.APPLICATION_ID}.fileprovider",
                         file
                     ).also { fileUri -> launchTakePhoto.launch(fileUri) }
-
                 }
             }
         }
@@ -114,8 +113,8 @@ class SignUpFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.navigation.collect { event ->
-                event?.consume()?.let {navigation ->
-                    when(navigation){
+                event?.consume()?.let { navigation ->
+                    when (navigation) {
                         SignUpViewModel.Navigation.Home -> {
                             findNavController().navigate(R.id.action_signUpFragment_to_nav_graph)
                         }

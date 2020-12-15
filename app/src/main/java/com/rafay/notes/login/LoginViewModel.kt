@@ -11,15 +11,12 @@ import com.rafay.notes.ktx.ErrorMessage
 import com.rafay.notes.ktx.toError
 import com.rafay.notes.util.CoroutineDispatchers
 import com.rafay.notes.util.isEmail
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 /**
