@@ -22,7 +22,7 @@ buildscript {
         materialVersion = "1.3.0"
         timberVersion = "4.7.1"
         jUnitVersion = "4.13.1"
-        testRunnerVersion = "1.2.0"
+        testRunnerVersion = '1.3.0'
         espressoCoreVersion = "3.3.0"
         recyclerViewVersion = "1.1.0"
         coreVersion = '1.3.0'
@@ -33,8 +33,8 @@ buildscript {
         guavaVersion = '28.2-jre'
         roomVersion = '2.2.6'
         workVersion = '2.3.0'
-        activityVersion = '1.2.0-rc01'
-        fragmentVersion = '1.3.0-rc01'
+        activityVersion = '1.2.0'
+        fragmentVersion = '1.3.0'
         coilVersion = '1.1.0'
         navigationVersion = '2.3.0'
         retrofitVersion = "2.9.0"

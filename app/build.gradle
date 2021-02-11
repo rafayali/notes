@@ -71,13 +71,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlinVersion"
+
     implementation "androidx.appcompat:appcompat:$rootProject.appcompatVersion"
     implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "androidx.transition:transition:$rootProject.transitionsVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+    implementation 'androidx.activity:activity-ktx:' + rootProject.activityVersion
+    implementation 'androidx.fragment:fragment-ktx:' + rootProject.fragmentVersion
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 
@@ -107,9 +109,6 @@ dependencies {
 
     // Work Manager
     implementation 'androidx.work:work-runtime-ktx:' + rootProject.workVersion
-
-    implementation 'androidx.activity:activity-ktx:' + rootProject.activityVersion
-    implementation 'androidx.fragment:fragment-ktx:' + rootProject.fragmentVersion
 
     // Testing
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
