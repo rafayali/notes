@@ -11,7 +11,7 @@ buildscript {
 
         androidGradleVersion = '4.2.0-beta04'
         googleServicesVersion = "4.3.3"
-        kotlinVersion = '1.4.30'
+        kotlinVersion = '1.4.31'
         appcompatVersion = '1.2.0'
         constraintLayoutVersion = "2.0.4"
         transitionsVersion = "1.4.0"
