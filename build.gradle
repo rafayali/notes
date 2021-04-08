@@ -9,7 +9,7 @@ buildscript {
         maxSdkVersion = 30
         buildToolsVersion = "30.0.2"
 
-        androidGradleVersion = '4.2.0-beta04'
+        androidGradleVersion = '7.0.0-alpha14'
         googleServicesVersion = "4.3.3"
         kotlinVersion = '1.4.32'
         appcompatVersion = '1.2.0'
