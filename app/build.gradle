@@ -94,10 +94,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$rootProject.coroutinesVersion"
 
     // Koin
-    implementation "org.koin:koin-core:$rootProject.koinVersion"
-    implementation "org.koin:koin-android-scope:$rootProject.koinVersion"
-    implementation "org.koin:koin-android-viewmodel:$rootProject.koinVersion"
-    testImplementation 'org.koin:koin-test:' + rootProject.koinVersion
+    implementation "io.insert-koin:koin-core:$rootProject.koinVersion"
+    implementation "io.insert-koin:koin-android-scope:$rootProject.koinVersion"
+    implementation "io.insert-koin:koin-android-viewmodel:$rootProject.koinVersion"
+    testImplementation 'io.insert-koin:koin-test:' + rootProject.koinVersion
 
     // Logging
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
