@@ -13,7 +13,7 @@ val createNoteModule = module {
         val color = bundle?.getString(CreateNoteFragment.KEY_STRING_BG_COLOR_HEX)
 
         CreateNoteViewModel(
-            id = id,
+            id = if(id == 0L) null else id,
             title = title,
             notes = notes,
             color = color,

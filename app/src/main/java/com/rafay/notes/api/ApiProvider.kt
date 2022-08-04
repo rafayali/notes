@@ -44,11 +44,7 @@ class ApiProvider(private val tokenStore: AuthTokenStore) {
         .baseUrl(BuildConfig.API_BASE_URL)
         .build()
 
-    val api: Api
-
-    init {
-        api = retrofit.create(Api::class.java)
-    }
+    val api: Api = retrofit.create(Api::class.java)
 
     companion object {
         private const val TAG = "OkHttp"

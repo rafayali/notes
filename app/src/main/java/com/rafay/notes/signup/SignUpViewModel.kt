@@ -26,9 +26,6 @@ class SignUpViewModel(
     private val dispatchers: CoroutineDispatchers
 ) : ViewModel() {
 
-    private val _loading = MutableStateFlow(false)
-    val loading: StateFlow<Boolean> = _loading.asStateFlow()
-
     private val _message = MutableSharedFlow<ErrorMessage>()
     val message: SharedFlow<ErrorMessage> = _message.asSharedFlow()
 

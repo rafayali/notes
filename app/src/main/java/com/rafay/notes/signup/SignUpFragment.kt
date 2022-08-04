@@ -21,7 +21,6 @@ import com.rafay.notes.databinding.FragmentSignupBinding
 import com.rafay.notes.ktx.ErrorMessage
 import com.rafay.notes.ktx.longToast
 import com.rafay.notes.util.isEmail
-import kotlinx.coroutines.flow.collect
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.File
 import java.time.Instant

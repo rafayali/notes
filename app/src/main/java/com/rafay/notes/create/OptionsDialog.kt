@@ -19,7 +19,7 @@ class OptionsDialog : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentOptionsDialogBinding.inflate(inflater, container, false)
         return binding.root
     }

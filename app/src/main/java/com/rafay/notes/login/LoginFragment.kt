@@ -13,7 +13,6 @@ import com.rafay.notes.R
 import com.rafay.notes.databinding.FragmentLoginBinding
 import com.rafay.notes.ktx.ErrorMessage
 import com.rafay.notes.ktx.longToast
-import kotlinx.coroutines.flow.collect
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {

@@ -9,9 +9,4 @@ class ActivityViewModel(authStore: AuthStore) : ViewModel() {
 
     private val _loggedIn = MutableLiveData(authStore.loggedIn)
     val navigation: LiveData<Boolean> = _loggedIn
-
-    enum class Navigation {
-        Login,
-        Home
-    }
 }

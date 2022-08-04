@@ -13,7 +13,6 @@ import com.rafay.notes.login.loginModule
 import com.rafay.notes.signup.signUpModule
 import com.rafay.notes.util.CoroutineDispatchers
 import com.rafay.notes.util.DefaultCoroutineDispatchers
-import com.rafay.notes.work.workerModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.Koin
 import org.koin.dsl.module
@@ -61,5 +60,4 @@ val modules = listOf(
     createNoteModule,
     loginModule,
     signUpModule,
-    workerModule
 )

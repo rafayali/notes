@@ -5,7 +5,7 @@ import androidx.core.content.edit
 import com.rafay.notes.domain.models.LocalProfile
 
 /**
- * Data store for saving and retrieving loggedIn user data
+ * Store for saving and retrieving loggedIn user data
  */
 interface AuthStore {
 

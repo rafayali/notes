@@ -1,5 +1,6 @@
 package com.rafay.notes.create
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,11 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialContainerTransform
+import com.rafay.notes.common.emptyString
 import com.rafay.notes.databinding.FragmentCreateNoteBinding
-import kotlinx.coroutines.flow.collect
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 
 class CreateNoteFragment : Fragment() {
 
@@ -41,15 +41,24 @@ class CreateNoteFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.title.collect { binding.editTitle.setText(it ?: "") }
+            viewModel.title.collect {
+                if (!binding.editTitle.text.contentEquals(it)){
+                    binding.editTitle.setText(it ?: emptyString)
+                }
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.notes.collect { binding.editDescription.setText(it ?: "") }
+            viewModel.notes.collect {
+                if (!binding.editDescription.text.contentEquals(it)) {
+                    binding.editDescription.setText(it ?: emptyString)
+                }
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
@@ -74,10 +83,8 @@ class CreateNoteFragment : Fragment() {
             (bundle.getSerializable(OptionsDialog.KEY_RESULT_SERIALIZABLE_OPTION) as OptionsDialog.Options).also { option ->
                 when (option) {
                     OptionsDialog.Options.TakePhoto -> {
-                        Timber.d("TakePhoto")
                     }
                     OptionsDialog.Options.AddImage -> {
-                        Timber.d("AddImage")
                     }
                 }
             }

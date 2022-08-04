@@ -16,7 +16,6 @@ import com.rafay.notes.common.Result
 import com.rafay.notes.common.recyclerview.NoteSpaceItemDecoration
 import com.rafay.notes.create.CreateNoteFragment
 import com.rafay.notes.databinding.FragmentHomeBinding
-import kotlinx.coroutines.flow.collect
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {

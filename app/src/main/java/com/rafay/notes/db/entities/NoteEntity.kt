@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 import com.rafay.notes.home.NoteUiModel
 import java.time.OffsetDateTime
 
+@Suppress("unused")
 @Entity(tableName = "notes")
 class NoteEntity(
 

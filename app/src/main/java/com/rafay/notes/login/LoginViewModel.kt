@@ -19,9 +19,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel for [LoginFragment]
- */
 class LoginViewModel(
     private val api: Api,
     private val tokenStore: AuthTokenStore,
@@ -38,9 +35,6 @@ class LoginViewModel(
     private val _navigation = MutableSharedFlow<Navigation>()
     val navigation: SharedFlow<Navigation> = _navigation.asSharedFlow()
 
-    /**
-     * Performs login action
-     */
     fun login(email: String, password: String) {
         if (!email.isEmail()) return
 

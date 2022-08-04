@@ -1,7 +1,7 @@
 package com.rafay.notes.domain.models
 
 /**
- * Data class for storing loggedIn user profile information
+ * Stores loggedIn user profile information
  */
 data class LocalProfile(
     val firstName: String,

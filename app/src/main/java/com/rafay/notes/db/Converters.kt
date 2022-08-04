@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.rafay.notes.db
 
 import androidx.room.TypeConverter

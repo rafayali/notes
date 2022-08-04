@@ -24,6 +24,7 @@ class AuthTokenStore(private val preferences: SharedPreferences) {
     /**
      * Clears all data
      */
+    @Suppress("unused")
     fun clear() {
         preferences.edit {
             remove(KEY_STRING_AUTH_TOKEN)
