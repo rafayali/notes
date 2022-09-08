@@ -12,7 +12,7 @@ buildscript {
         androidGradleVersion = '7.2.2'
         googleServicesVersion = "4.3.3"
         kotlinVersion = '1.7.10'
-        appcompatVersion = '1.4.2'
+        appcompatVersion = '1.5.1'
         constraintLayoutVersion = "2.1.4"
         transitionsVersion = "1.4.1"
         lifecycleVersion = "2.5.1"
