@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
 class NotesColors(
-    primary: Color = Color(0XFF5564ff),
+    primary: Color = Color(0xFF0277BD),
     onPrimary: Color = Color.White,
     secondary: Color = Color(0xFF5564ff),
     onSecondary: Color = Color.White,

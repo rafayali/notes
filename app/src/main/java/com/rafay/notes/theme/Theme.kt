@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 
 @Composable
-fun NotesTheme(isDark: Boolean = false, content: @Composable () -> Unit) {
+fun NotesTheme(content: @Composable () -> Unit) {
     val localColors = remember { NotesColors() }
 
     val localTypography = remember { NotesTypography() }

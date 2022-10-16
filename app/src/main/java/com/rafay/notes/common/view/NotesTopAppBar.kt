@@ -24,7 +24,7 @@ fun NotesTopAppBar(
     modifier: Modifier = Modifier,
     title: String = "",
     onNavigationIconClicked: (() -> Unit)? = null,
-    actions: @Composable RowScope.() -> Unit,
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     val insets = WindowInsets.statusBars.only(WindowInsetsSides.Top).asPaddingValues()
 
@@ -50,7 +50,7 @@ fun NotesTopAppBar(
 fun NotesTopAppBar_Preview() {
     NotesTheme {
         NotesTopAppBar(
-            title = "Notes asd asd a asd  sad asd asdasd asdasdasd asa sdasd  asd asd asd asd asdasdasd asd asd asd asd asda sdas dasdas dasd",
+            title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             onNavigationIconClicked = { /*TODO*/ },
             actions = {
                 IconButton(onClick = { /*TODO*/ }) {
