@@ -30,8 +30,6 @@
         <item name="colorOnPrimary">@color/black</item>
     </style>
 
-
-
     <style name="Widget.AppComponents.ImageView.CreateNotes.More" parent=""/>
 
     <style name="Widget.AppComponents.TextView.CreateNotes.Option" parent="Widget.MaterialComponents.TextView">

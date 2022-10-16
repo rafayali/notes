@@ -1,19 +1,16 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-parcelize'
-
 apply plugin: 'kotlin-kapt'
 
 android {
 
-    compileSdkVersion rootProject.maxSdkVersion
+    compileSdkVersion rootProject.targetSdkVersion
 
     defaultConfig {
         applicationId "com.rafay.notes"
         minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.maxSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode rootProject.versionCode
         versionName rootProject.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -31,7 +28,6 @@ android {
     }
 
     flavorDimensions "env"
-
     productFlavors {
         local {
             buildConfigField "String", "API_BASE_URL", "\"${BASE_API_URL_LOCAL}\""
@@ -65,7 +61,14 @@ android {
 
     buildFeatures {
         viewBinding true
+        compose true
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.0'
+    }
+
+    namespace 'com.rafay.notes'
 }
 
 dependencies {
@@ -134,4 +137,13 @@ dependencies {
 
     implementation 'com.squareup.moshi:moshi:' + rootProject.moshiVersion
     kapt 'com.squareup.moshi:moshi-kotlin-codegen:' + rootProject.moshiVersion
+
+    // Compose
+    implementation 'androidx.activity:activity-compose:1.6.0'
+    implementation 'androidx.compose.material:material:1.2.1'
+    implementation 'androidx.compose.material:material-icons-core:1.2.1'
+    implementation 'androidx.compose.material:material-icons-extended:1.2.1'
+    implementation 'androidx.compose.animation:animation:1.2.1'
+    implementation 'androidx.compose.ui:ui-tooling:1.2.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
 }

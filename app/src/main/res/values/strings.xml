@@ -21,4 +21,6 @@
     <string name="sign_up_date_of_birth_hint">Date of birth</string>
     <string name="sign_up_last_name_hint">Last Name</string>
     <string name="sign_up_first_name_hint">First Name</string>
+    <string name="note__palceholder_title">Title</string>
+    <string name="note__placeholder_description">Description</string>
 </resources>

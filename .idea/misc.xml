@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rufi1/Office/Android/workspace/notes/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.4245" />
+        <entry key="..\:/Users/rufi1/Office/Android/workspace/notes/app/src/main/res/drawable/ic_close_black_24dp.xml" value="0.4245" />
         <entry key="..\:/Users/rufi1/Office/Android/workspace/notes/app/src/main/res/layout/fragment_create_note.xml" value="0.2674772036474164" />
+        <entry key="..\:/Users/rufi1/Office/Android/workspace/notes/app/src/main/res/layout/fragment_home.xml" value="0.55" />
         <entry key="..\:/Users/rufi1/Office/Android/workspace/notes/app/src/main/res/layout/fragment_login.xml" value="0.30117753623188404" />
         <entry key="..\:/Users/rufi1/Office/Android/workspace/notes/app/src/main/res/layout/fragment_options_dialog.xml" value="0.30117753623188404" />
         <entry key="..\:/Users/rufi1/Office/Android/workspace/notes/app/src/main/res/layout/fragment_signup.xml" value="0.30117753623188404" />

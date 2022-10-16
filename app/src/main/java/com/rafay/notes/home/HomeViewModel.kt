@@ -21,12 +21,22 @@ class HomeViewModel(
     private val _notes = MutableStateFlow<Result<List<NoteUiModel>>>(Result.Loading)
     val notes: StateFlow<Result<List<NoteUiModel>>> = _notes.asStateFlow()
 
+    private val _notesState = MutableStateFlow<List<NoteUiModel>>(listOf())
+    val notesState: StateFlow<List<NoteUiModel>> = _notesState.asStateFlow()
+
     init {
-        viewModelScope.launch {
+        /*viewModelScope.launch {
             notesDao.getNotesAsFlow()
                 .map { Result.Success(it.map { noteEntity -> noteEntity.toNoteUiModel() }) }
                 .flowOn(dispatcher.io())
                 .collect { _notes.value = it }
+        }*/
+
+        viewModelScope.launch {
+            notesDao.getNotesAsFlow()
+                .map { it.map { noteEntity -> noteEntity.toNoteUiModel() } }
+                .flowOn(dispatcher.io())
+                .collect { _notesState.value = it }
         }
     }
 }

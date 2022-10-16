@@ -18,6 +18,4 @@
         android:name="com.rafay.notes.create.CreateNoteFragment"
         android:label="CreateNoteFragment" />
 
-    <include app:graph="@navigation/auth_graph" />
-
 </navigation>

@@ -12,7 +12,7 @@ import com.rafay.notes.databinding.ItemNoteBinding
 typealias NoteOnClickListener = (id: Long, view: View) -> Unit
 
 /**
- * RecyclerView adapter for [Note].
+ * RecyclerView adapter for [NoteUiModel].
  */
 class NotesAdapter(
     private val onItemSelected: NoteOnClickListener
