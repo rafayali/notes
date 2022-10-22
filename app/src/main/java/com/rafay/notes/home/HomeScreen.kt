@@ -2,20 +2,22 @@ package com.rafay.notes.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.rafay.notes.R
 import com.rafay.notes.common.recyclerview.NoteSpaceItemDecoration
 import com.rafay.notes.common.view.NotesTopAppBar
 import com.rafay.notes.theme.NotesTheme
@@ -34,33 +36,40 @@ fun HomeScreenContent(state: List<NoteUiModel>, onNoteClicked: (id: Long) -> Uni
         }
     }
 
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            NotesTopAppBar(title = "Notes")
-            AndroidView(
-                modifier = Modifier.weight(1f),
-                factory = {
-                    RecyclerView(it).apply {
-                        layoutManager =
-                            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                        setPadding(8, 8, 8, 8)
-                        clipToPadding = false
-                        clipChildren = false
-                        addItemDecoration(NoteSpaceItemDecoration())
-                        adapter = notesAdapter
-                    }
-                },
-                update = {
-                    notesAdapter.submitList(state)
-                },
-            )
-        }
-
+    Scaffold(
+        topBar = { NotesTopAppBar(title = "Notes") },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_add_24dp),
+                    contentDescription = null
+                )
+            }
+        },
+    ) {
+        AndroidView(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it),
+            factory = {
+                RecyclerView(it).apply {
+                    layoutManager =
+                        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                    setPadding(8, 8, 8, 8)
+                    clipToPadding = false
+                    clipChildren = false
+                    addItemDecoration(NoteSpaceItemDecoration())
+                    adapter = notesAdapter
+                }
+            },
+            update = {
+                notesAdapter.submitList(state)
+            },
+        )
     }
 }
 
-@ExperimentalMaterialApi
-@Preview(showSystemUi = true, device = Devices.NEXUS_6)
+@Preview
 @Composable
 fun HomeScreenContent_Preview() {
     NotesTheme {

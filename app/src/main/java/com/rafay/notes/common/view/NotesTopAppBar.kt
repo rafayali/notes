@@ -21,7 +21,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.rafay.notes.R
-import com.rafay.notes.theme.NotesColors
 import com.rafay.notes.theme.NotesTheme
 
 @Composable
