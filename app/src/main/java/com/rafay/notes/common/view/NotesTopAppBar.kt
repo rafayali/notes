@@ -1,5 +1,7 @@
 package com.rafay.notes.common.view
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -9,14 +11,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.rafay.notes.R
+import com.rafay.notes.theme.NotesColors
 import com.rafay.notes.theme.NotesTheme
 
 @Composable
@@ -28,21 +33,22 @@ fun NotesTopAppBar(
 ) {
     val insets = WindowInsets.statusBars.only(WindowInsetsSides.Top).asPaddingValues()
 
-    TopAppBar(
-        modifier = modifier.padding(insets),
-        title = { Text(text = title, maxLines = 2, overflow = TextOverflow.Ellipsis) },
-        navigationIcon = onNavigationIconClicked?.let {
-            {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_baseline_arrow_back_24),
-                        contentDescription = null
-                    )
+    Box(modifier = modifier.background(color = MaterialTheme.colors.primarySurface).padding(insets)){
+        TopAppBar(
+            title = { Text(text = title, maxLines = 2, overflow = TextOverflow.Ellipsis) },
+            navigationIcon = onNavigationIconClicked?.let {
+                {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_baseline_arrow_back_24),
+                            contentDescription = null
+                        )
+                    }
                 }
-            }
-        },
-        actions = actions,
-    )
+            },
+            actions = actions,
+        )
+    }
 }
 
 @Composable

@@ -9,6 +9,8 @@
         <item name="colorSurface">@color/app_magenta_light</item>
         <item name="colorPrimarySurface">@color/app_magenta</item>
         <item name="toolbarStyle">@style/Widget.AppComponents.Toolbar</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="Widget.AppComponents.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">

@@ -32,6 +32,15 @@ fun NotesTheme(content: @Composable () -> Unit) {
     }
 }
 
+object NotesTheme {
+    val colors: NotesColors
+        @Composable
+        get() = LocalNotesColors.current
+    val typography: NotesTypography
+        @Composable
+        get() = LocalNotesTypography.current
+}
+
 @Composable
 fun ProvidesNotesTheme(
     colors: NotesColors, typography: NotesTypography, content: @Composable () -> Unit
