@@ -21,7 +21,7 @@ class CreateNoteFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateNoteBinding
 
-    private val viewModel by viewModel<CreateNoteViewModel> { parametersOf(arguments) }
+    private val viewModel by viewModel<AddNoteViewModel> { parametersOf(arguments) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,5 +1,6 @@
 package com.rafay.notes.common.view
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
@@ -27,19 +28,26 @@ import com.rafay.notes.theme.NotesTheme
 fun NotesTopAppBar(
     modifier: Modifier = Modifier,
     title: String = "",
+    @DrawableRes navigationIcon: Int = R.drawable.ic_baseline_arrow_back_24,
     onNavigationIconClicked: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     val insets = WindowInsets.statusBars.only(WindowInsetsSides.Top).asPaddingValues()
 
-    Box(modifier = modifier.background(color = MaterialTheme.colors.primarySurface).padding(insets)){
+    Box(
+        modifier = modifier
+            .background(color = MaterialTheme.colors.primarySurface)
+            .padding(insets)
+    ) {
         TopAppBar(
             title = { Text(text = title, maxLines = 2, overflow = TextOverflow.Ellipsis) },
             navigationIcon = onNavigationIconClicked?.let {
                 {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(
+                        onClick = onNavigationIconClicked,
+                    ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_baseline_arrow_back_24),
+                            painter = painterResource(id = navigationIcon),
                             contentDescription = null
                         )
                     }
@@ -54,8 +62,7 @@ fun NotesTopAppBar(
 @Preview
 fun NotesTopAppBar_Preview() {
     NotesTheme {
-        NotesTopAppBar(
-            title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        NotesTopAppBar(title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             onNavigationIconClicked = { /*TODO*/ },
             actions = {
                 IconButton(onClick = { /*TODO*/ }) {
@@ -64,7 +71,6 @@ fun NotesTopAppBar_Preview() {
                         contentDescription = null,
                     )
                 }
-            }
-        )
+            })
     }
 }

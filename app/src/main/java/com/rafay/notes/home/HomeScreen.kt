@@ -1,12 +1,11 @@
 package com.rafay.notes.home
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -23,13 +22,24 @@ import com.rafay.notes.common.view.NotesTopAppBar
 import com.rafay.notes.theme.NotesTheme
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel, onNoteClicked: (id: Long) -> Unit) {
+fun HomeScreen(
+    viewModel: HomeViewModel,
+    onNoteClicked: (id: Long) -> Unit,
+    onAddNoteClicked: () -> Unit,
+) {
     val state by viewModel.notesState.collectAsState()
-    HomeScreenContent(state = state, onNoteClicked = onNoteClicked)
+
+    HomeScreenContent(
+        state = state, onNoteClicked = onNoteClicked, onAddNoteClicked = onAddNoteClicked
+    )
 }
 
 @Composable
-fun HomeScreenContent(state: List<NoteUiModel>, onNoteClicked: (id: Long) -> Unit) {
+fun HomeScreenContent(
+    state: List<NoteUiModel>,
+    onNoteClicked: (id: Long) -> Unit,
+    onAddNoteClicked: () -> Unit,
+) {
     val notesAdapter = remember {
         NotesAdapter { id, _ ->
             onNoteClicked(id)
@@ -39,7 +49,9 @@ fun HomeScreenContent(state: List<NoteUiModel>, onNoteClicked: (id: Long) -> Uni
     Scaffold(
         topBar = { NotesTopAppBar(title = "Notes") },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
+            FloatingActionButton(
+                modifier = Modifier.navigationBarsPadding(),
+                onClick = { onAddNoteClicked() }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_add_24dp),
                     contentDescription = null
@@ -101,6 +113,7 @@ fun HomeScreenContent_Preview() {
                 ),
             ),
             onNoteClicked = {},
+            onAddNoteClicked = {},
         )
     }
 }

@@ -8,10 +8,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.navArgument
+import com.rafay.notes.create.AddNoteModelFactory
+import com.rafay.notes.create.AddNoteScreen
 import com.rafay.notes.databinding.ActivityMainBinding
 import com.rafay.notes.home.HomeScreen
 import com.rafay.notes.home.HomeViewModelFactory
@@ -46,6 +50,15 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+interface Route {
+    val route: String
+}
+
+enum class Routes(override val route: String) : Route {
+    Home("home"),
+    Add("/add")
+}
+
 class MainComposeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,15 +78,43 @@ fun NotesActivityContent() {
     val navController = rememberNavController()
     val context = LocalContext.current
 
-    NavHost(navController = navController, startDestination = "home") {
-        composable("home") {
+    NavHost(navController = navController, startDestination = Routes.Home.route) {
+        composable(Routes.Home.route) {
             HomeScreen(
                 viewModel = viewModel(
                     factory = HomeViewModelFactory(
                         context = context, dispatchers = DefaultCoroutineDispatchers()
                     )
                 ),
-                onNoteClicked = {},
+                onNoteClicked = {
+                    navController.navigate(Routes.Add.route.plus("/$id"))
+                },
+                onAddNoteClicked = {
+                    navController.navigate(Routes.Add.route)
+                }
+            )
+        }
+        composable(
+            Routes.Add.route.plus("/{${AddNoteScreen.KEY_LONG_NOTE_ID}}"),
+            arguments = listOf(
+                navArgument(AddNoteScreen.KEY_LONG_NOTE_ID) {
+                    type = NavType.LongType
+                }
+            )
+        ) {
+            AddNoteScreen(
+                viewModel = viewModel(),
+                onClose = {
+                    navController.navigateUp()
+                },
+            )
+        }
+        composable(Routes.Add.route){
+            AddNoteScreen(
+                viewModel = viewModel(factory = AddNoteModelFactory(context = context)),
+                onClose = {
+                    navController.navigateUp()
+                },
             )
         }
     }
