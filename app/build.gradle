@@ -17,14 +17,7 @@ android {
 
         resValue "string", "fileprovider_authority", "${applicationId}.fileprovider"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true",
-                        "room.expandProjection":"true"]
-            }
-        }
+
     }
 
     flavorDimensions "env"

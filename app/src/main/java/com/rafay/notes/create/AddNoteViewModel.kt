@@ -3,6 +3,8 @@ package com.rafay.notes.create
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.rafay.notes.common.emptyString
 import com.rafay.notes.db.NotesDatabase
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.NoteEntity
@@ -10,6 +12,7 @@ import com.rafay.notes.util.EMPTY_STRING
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -28,6 +31,16 @@ class AddNoteViewModel(
 
     private val _color = MutableStateFlow<String?>(null)
     val color: StateFlow<String?> = _color.asStateFlow()
+
+    init {
+        if(id != null){
+            viewModelScope.launch {
+                val note = notesDao.getNote(id = id)
+                _title.value = note.title ?: emptyString
+                _notes.value = note.notes ?: emptyString
+            }
+        }
+    }
 
     fun setTitle(value: String) {
         _title.value = value

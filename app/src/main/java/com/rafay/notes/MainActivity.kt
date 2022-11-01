@@ -87,7 +87,7 @@ fun NotesActivityContent() {
                     )
                 ),
                 onNoteClicked = {
-                    navController.navigate(Routes.Add.route.plus("/$id"))
+                    navController.navigate(Routes.Add.route.plus("/$it"))
                 },
                 onAddNoteClicked = {
                     navController.navigate(Routes.Add.route)
@@ -101,9 +101,10 @@ fun NotesActivityContent() {
                     type = NavType.LongType
                 }
             )
-        ) {
+        ) { backStackEntry ->
+            val noteId = backStackEntry.arguments!!.getLong(AddNoteScreen.KEY_LONG_NOTE_ID)
             AddNoteScreen(
-                viewModel = viewModel(),
+                viewModel = viewModel( factory = AddNoteModelFactory(context, noteId = noteId)),
                 onClose = {
                     navController.navigateUp()
                 },
