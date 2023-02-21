@@ -8,7 +8,7 @@ buildscript {
         minSdkVersion = 21
         targetSdkVersion = 33
 
-        androidGradleVersion = '7.3.1'
+        androidGradleVersion = '7.4.1'
         googleServicesVersion = "4.3.3"
         kotlinVersion = '1.7.10'
         appcompatVersion = '1.5.1'

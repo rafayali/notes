@@ -63,8 +63,8 @@ fun HomeScreenContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it),
-            factory = {
-                RecyclerView(it).apply {
+            factory = { context ->
+                RecyclerView(context).apply {
                     layoutManager =
                         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                     setPadding(8, 8, 8, 8)
