@@ -20,10 +20,10 @@ class NoteEntity(
     val noteId: Long? = null,
 
     @ColumnInfo(name = "title")
-    val title: String? = null,
+    val title: String = "",
 
     @ColumnInfo(name = "notes")
-    val notes: String?,
+    val notes: String = "",
 
     @ColumnInfo(name = "archived")
     val archived: Boolean = false,

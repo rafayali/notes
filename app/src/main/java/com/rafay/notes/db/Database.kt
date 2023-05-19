@@ -7,28 +7,26 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.NoteEntity
-import org.koin.android.ext.koin.androidContext
 
-@Database(entities = [NoteEntity::class], version = 1)
+@Database(entities = [NoteEntity::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class NotesDatabase : RoomDatabase() {
 
     abstract fun getNotesDao(): NotesDao
 
     companion object {
-        const val NAME = "notes"
+        private const val NAME = "notes"
 
         private var INSTANCE: NotesDatabase? = null
 
         fun getInstance(context: Context): NotesDatabase {
-            if (INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: Room.databaseBuilder(
                     context,
                     NotesDatabase::class.java,
                     NAME
                 ).fallbackToDestructiveMigration().build()
             }
-            return INSTANCE!!
         }
     }
 }

@@ -19,4 +19,16 @@ class DefaultCoroutineDispatchers : CoroutineDispatchers {
     override fun main() = Dispatchers.Main
 
     override fun default() = Dispatchers.Default
+
+    companion object {
+        private var INSTANCE: DefaultCoroutineDispatchers? = null
+
+        fun getInstance(): DefaultCoroutineDispatchers {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: DefaultCoroutineDispatchers().also {
+                    INSTANCE = it
+                }
+            }
+        }
+    }
 }
