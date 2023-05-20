@@ -1,5 +1,6 @@
 package com.rafay.notes.domain
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.rafay.notes.domain.models.LocalProfile
@@ -43,7 +44,12 @@ class SharedPreferencesAuthStore(private val preferences: SharedPreferences) : A
             val email = preferences.getString(KEY_STRING_EMAIL, null) ?: return null
             val dob = preferences.getString(KEY_STRING_DOB, null) ?: return null
 
-            return LocalProfile(firstName = firstName, lastName = lastName, email = email, dob = dob)
+            return LocalProfile(
+                firstName = firstName,
+                lastName = lastName,
+                email = email,
+                dob = dob
+            )
         }
         set(value) {
             if (value != null) {
@@ -71,5 +77,18 @@ class SharedPreferencesAuthStore(private val preferences: SharedPreferences) : A
         const val KEY_STRING_LAST_NAME = "lastName"
         const val KEY_STRING_EMAIL = "email"
         const val KEY_STRING_DOB = "dob"
+
+        private var INSTANCE: SharedPreferencesAuthStore? = null
+
+        fun getInstance(context: Context): SharedPreferencesAuthStore {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: SharedPreferencesAuthStore(
+                    context.getSharedPreferences(
+                        PREFERENCES_NAME,
+                        Context.MODE_PRIVATE
+                    ),
+                )
+            }
+        }
     }
 }

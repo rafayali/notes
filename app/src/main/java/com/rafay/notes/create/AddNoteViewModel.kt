@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.rafay.notes.common.emptyString
 import com.rafay.notes.db.NotesDatabase
 import com.rafay.notes.db.dao.NotesDao
 import com.rafay.notes.db.entities.NoteEntity
@@ -16,7 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /**
- * ViewModel for [CreateNoteFragment].
+ * ViewModel for [AddNoteScreen].
  */
 class AddNoteViewModel(
     private val id: Long?,
@@ -24,10 +23,10 @@ class AddNoteViewModel(
 ) : ViewModel() {
 
     private val _title = MutableStateFlow(EMPTY_STRING)
-    val title: StateFlow<String?> = _title.asStateFlow()
+    val title: StateFlow<String> = _title.asStateFlow()
 
     private val _notes = MutableStateFlow(EMPTY_STRING)
-    val notes: StateFlow<String?> = _notes.asStateFlow()
+    val notes: StateFlow<String> = _notes.asStateFlow()
 
     private val _color = MutableStateFlow<String?>(null)
     val color: StateFlow<String?> = _color.asStateFlow()
@@ -36,8 +35,8 @@ class AddNoteViewModel(
         if(id != null){
             viewModelScope.launch {
                 val note = notesDao.getNote(id = id)
-                _title.value = note.title ?: emptyString
-                _notes.value = note.notes ?: emptyString
+                _title.value = note.title
+                _notes.value = note.notes
             }
         }
     }

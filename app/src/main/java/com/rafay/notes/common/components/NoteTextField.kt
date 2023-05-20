@@ -1,8 +1,9 @@
+@file:OptIn(ExperimentalMaterialApi::class)
+
 package com.rafay.notes.common.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,7 +15,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.TextFieldColors
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TextFieldDefaults.indicatorLine
@@ -41,10 +41,6 @@ fun NotesTextField(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     textStyle: TextStyle = LocalTextStyle.current,
-    label: @Composable (() -> Unit)? = null,
-    placeholder: @Composable (() -> Unit)? = null,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -55,7 +51,6 @@ fun NotesTextField(
     shape: Shape =
         MaterialTheme.shapes.small.copy(bottomEnd = ZeroCornerSize, bottomStart = ZeroCornerSize),
     colors: TextFieldColors = TextFieldDefaults.textFieldColors(),
-    contentPadding: PaddingValues? = null,
 ) {
     // If color is not provided via the text style, use content color as a default
     val textColor = textStyle.color.takeOrElse {
@@ -63,7 +58,6 @@ fun NotesTextField(
     }
     val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
 
-    @OptIn(ExperimentalMaterialApi::class)
     BasicTextField(
         value = value,
         modifier = modifier
@@ -84,7 +78,7 @@ fun NotesTextField(
         interactionSource = interactionSource,
         singleLine = singleLine,
         maxLines = maxLines,
-        decorationBox = @Composable { _ ->
+        decorationBox = @Composable {
             TextFieldDefaults.textFieldWithoutLabelPadding()
         }
     )
