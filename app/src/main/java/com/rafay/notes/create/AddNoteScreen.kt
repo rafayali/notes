@@ -16,7 +16,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,20 +30,17 @@ import androidx.compose.ui.unit.dp
 import com.rafay.notes.R
 import com.rafay.notes.common.view.NotesTopAppBar
 import com.rafay.notes.theme.NotesTheme
-import com.rafay.notes.util.EMPTY_STRING
 
 object AddNoteScreen{
-    const val KEY_LONG_NOTE_ID = "id"
+    const val KEY_INT_NOTE_ID = "id"
 }
 
 @Composable
 fun AddNoteScreen(viewModel: AddNoteViewModel, onClose: () -> Unit) {
-    val title by viewModel.title.collectAsState()
-    val notes by viewModel.notes.collectAsState()
+    val note by viewModel.note
 
     AddNoteScreenContent(
-        title = title ?: EMPTY_STRING,
-        notes = notes ?: EMPTY_STRING,
+        note = note,
         onTitleChange = viewModel::setTitle,
         onNotesChange = viewModel::setNotes,
         onClose = {
@@ -56,8 +52,7 @@ fun AddNoteScreen(viewModel: AddNoteViewModel, onClose: () -> Unit) {
 
 @Composable
 private fun AddNoteScreenContent(
-    title: String,
-    notes: String,
+    note: Note,
     onTitleChange: (String) -> Unit,
     onNotesChange: (String) -> Unit,
     onClose: () -> Unit,
@@ -80,7 +75,7 @@ private fun AddNoteScreenContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp),
-                value = title,
+                value = note.title,
                 onValueChange = onTitleChange,
                 placeholder = {
                     Text(
@@ -104,7 +99,7 @@ private fun AddNoteScreenContent(
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = notes,
+                value = note.notes,
                 onValueChange = onNotesChange,
                 placeholder = { Text(text = stringResource(R.string.note__placeholder_description)) },
                 colors = TextFieldDefaults.textFieldColors(
@@ -126,7 +121,7 @@ fun NoteScreenContent_Preview() {
 
     NotesTheme {
         AddNoteScreenContent(
-            title = title, notes = description,
+            note = Note(),
             onTitleChange = { title = it },
             onNotesChange = { description = it },
             onClose = {},

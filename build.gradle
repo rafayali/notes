@@ -8,7 +8,7 @@ buildscript {
         minSdkVersion = 21
         targetSdkVersion = 33
 
-        androidGradleVersion = '8.0.1'
+        androidGradleVersion = '8.0.2'
         googleServicesVersion = "4.3.3"
         kotlinVersion = '1.8.21'
         appcompatVersion = '1.6.1'
@@ -40,8 +40,8 @@ buildscript {
     }
 
     repositories {
-        google()
         mavenCentral()
+        google()
     }
 
     dependencies {
@@ -52,20 +52,10 @@ buildscript {
     }
 }
 
-plugins {
-    id "com.diffplug.spotless" version "6.16.0"
-}
 
 allprojects {
     repositories {
-        google()
         mavenCentral()
-    }
-}
-
-spotless {
-    kotlin {
-        target "**/*.kt"
-        ktlint()
+        google()
     }
 }

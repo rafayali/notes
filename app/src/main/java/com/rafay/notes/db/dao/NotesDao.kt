@@ -18,7 +18,7 @@ interface NotesDao {
     suspend fun update(note: NoteEntity)
 
     @Query("DELETE FROM notes where id = :id")
-    suspend fun delete(id: Long): Int
+    suspend fun delete(id: Int): Int
 
     @Query("SELECT * FROM notes")
     fun getNotesAsFlow(): Flow<List<NoteEntity>>
@@ -27,5 +27,5 @@ interface NotesDao {
     suspend fun getNotes(): List<NoteEntity>
 
     @Query("SELECT * FROM notes where id = :id")
-    suspend fun getNote(id: Long): NoteEntity
+    suspend fun getNote(id: Int): NoteEntity?
 }

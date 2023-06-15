@@ -1,6 +1,8 @@
 package com.rafay.notes.create
 
 import android.content.Context
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -13,40 +15,53 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.UUID
+
+data class Note(
+    val id: Int? = null,
+    val noteId: Long? = null,
+    val title: String = EMPTY_STRING,
+    val notes: String = EMPTY_STRING,
+    val colorTag: String? = null
+) {
+    /**
+     * Returns true if one of the required fields are not blank.
+     */
+    fun isValid() = title.isNotBlank() || notes.isNotBlank()
+}
 
 /**
  * ViewModel for [AddNoteScreen].
  */
 class AddNoteViewModel(
-    private val id: Long?,
+    private val id: Int?,
     private val notesDao: NotesDao
 ) : ViewModel() {
-
-    private val _title = MutableStateFlow(EMPTY_STRING)
-    val title: StateFlow<String> = _title.asStateFlow()
-
-    private val _notes = MutableStateFlow(EMPTY_STRING)
-    val notes: StateFlow<String> = _notes.asStateFlow()
-
-    private val _color = MutableStateFlow<String?>(null)
-    val color: StateFlow<String?> = _color.asStateFlow()
+    private val _note = mutableStateOf(Note(id = id))
+    val note: State<Note> = _note
 
     init {
-        if(id != null){
+        if (id != null) {
             viewModelScope.launch {
-                val note = notesDao.getNote(id = id)
-                _title.value = note.title
-                _notes.value = note.notes
+                notesDao.getNote(id = id)?.let { noteEntity ->
+                    _note.value = Note(
+                        id = noteEntity.id,
+                        noteId = noteEntity.noteId,
+                        title = noteEntity.title,
+                        notes = noteEntity.notes,
+                        colorTag = noteEntity.colorTag,
+                    )
+                }
             }
         }
     }
 
     fun setTitle(value: String) {
-        _title.value = value
+        _note.value = _note.value.copy(title = value)
     }
 
     fun setNotes(value: String) {
-        _notes.value = value
+        _note.value = _note.value.copy(notes = value)
     }
 
     /**
@@ -54,10 +69,10 @@ class AddNoteViewModel(
      */
     fun sync() {
         runBlocking {
-            if (noteIsValid(title.value, notes.value)) {
+            if (_note.value.isValid()) {
                 saveNote()
             } else {
-                deleteNote(id)
+                deleteNote(_note.value.id)
             }
         }
     }
@@ -65,7 +80,7 @@ class AddNoteViewModel(
     /**
      * Deletes [NoteEntity] from repository for given [id].
      */
-    private suspend fun deleteNote(id: Long?) {
+    private suspend fun deleteNote(id: Int?) {
         if (id != null) {
             notesDao.delete(id)
         }
@@ -76,34 +91,27 @@ class AddNoteViewModel(
      */
     private suspend fun saveNote() {
         val note = NoteEntity(
-            id = id,
-            title = title.value,
-            notes = notes.value,
+            noteId = UUID.randomUUID().leastSignificantBits,
+            title = _note.value.title,
+            notes = _note.value.notes,
             colorTag = null
         )
 
         notesDao.insert(note)
     }
 
-    /**
-     * Returns true if one of the required fields are not blank.
-     */
-    private fun noteIsValid(title: String?, notes: String?): Boolean {
-        return title?.isNotBlank() == true || notes?.isNotBlank() == true
-    }
-
     fun setColor(color: String) {
-        _color.value = color
+        _note.value = _note.value.copy(colorTag = color)
     }
 }
 
-class AddNoteModelFactory(private val context: Context, private val noteId: Long? = null) :
+class AddNoteModelFactory(private val context: Context, private val id: Int? = null) :
     ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return AddNoteViewModel(
-            id = noteId,
+            id = id,
             notesDao = NotesDatabase.getInstance(context).getNotesDao()
         ) as T
     }

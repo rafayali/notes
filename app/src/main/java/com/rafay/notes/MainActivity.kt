@@ -1,11 +1,10 @@
-@file:OptIn(ExperimentalFoundationApi::class)
-
 package com.rafay.notes
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.view.WindowCompat
@@ -31,6 +30,8 @@ enum class Routes(override val route: String) : Route {
     Add("/add")
 }
 
+@ExperimentalMaterialApi
+@ExperimentalFoundationApi
 class MainComposeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,8 @@ class MainComposeActivity : AppCompatActivity() {
     }
 }
 
+@ExperimentalMaterialApi
+@ExperimentalFoundationApi
 @Composable
 fun NotesActivityContent() {
     val navController = rememberNavController()
@@ -68,24 +71,16 @@ fun NotesActivityContent() {
             )
         }
         composable(
-            Routes.Add.route.plus("/{${AddNoteScreen.KEY_LONG_NOTE_ID}}"),
+            Routes.Add.route.plus("/{${AddNoteScreen.KEY_INT_NOTE_ID}}"),
             arguments = listOf(
-                navArgument(AddNoteScreen.KEY_LONG_NOTE_ID) {
+                navArgument(AddNoteScreen.KEY_INT_NOTE_ID) {
                     type = NavType.LongType
                 }
             )
         ) { backStackEntry ->
-            val noteId = backStackEntry.arguments!!.getLong(AddNoteScreen.KEY_LONG_NOTE_ID)
+            val noteId = backStackEntry.arguments!!.getInt(AddNoteScreen.KEY_INT_NOTE_ID)
             AddNoteScreen(
-                viewModel = viewModel(factory = AddNoteModelFactory(context, noteId = noteId)),
-                onClose = {
-                    navController.navigateUp()
-                },
-            )
-        }
-        composable(Routes.Add.route) {
-            AddNoteScreen(
-                viewModel = viewModel(factory = AddNoteModelFactory(context = context)),
+                viewModel = viewModel(factory = AddNoteModelFactory(context, id = noteId)),
                 onClose = {
                     navController.navigateUp()
                 },
