@@ -1,4 +1,4 @@
-# Notes (:construction: Work in Progress :construction:)
+# Notes ( work in progress )
 
 [![CI](https://github.com/rafayali/notes/workflows/CI/badge.svg?branch=master)](https://github.com/rafayali/notes/actions)
 
