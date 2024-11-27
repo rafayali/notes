@@ -16,7 +16,7 @@ buildscript {
         constraintLayoutVersion = "2.1.4"
         transitionsVersion = "1.4.1"
         lifecycleVersion = "2.5.1"
-        coreKtxVersion = "1.8.0"
+        coreKtxVersion = "1.9.0"
         koinVersion = '2.2.3'
         coroutinesVersion = "1.6.1"
         materialVersion = "1.6.1"
